@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="website icon" href="profile.png" type="png">
+    <title>Calculateur d'XP</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #2c2c2c;
+            border-radius: 5px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+        }
+
+        .level-progress {
+            background-color: #2196F3; /* Blue */
+        }
+
+        .xp-progress {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .remaining-xp-progress {
+            background-color: #FFD700; /* Yellow */
+        }
+
+        .progress-label {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href=".container">Calculateur d'XP</a></li>
+            <li><a href="index.html">Inventaire</a></li>
+            <li><a href="wallet.html">Portefeuille</a></li
+            ><li><a href="chestopener.html">Ouverture de Coffres</a></li>
+            <li><a href="quests.html">Quêtes</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Calculateur d'XP</h1>
+        <div class="form-group">
+            <label for="rank">Rang :</label>
+            <select id="rank">
+                <option value="F">Débutant(e) (Rang F)</option>
+                <option value="E">Apprenti(e) (Rang E)</option>
+                <option value="D">Néophyte (Rang D)</option>
+                <option value="C">Expert(e) (Rang C)</option>
+                <option value="B">Spécialiste (Rang B)</option>
+                <option value="A">Élite (Rang A)</option>
+                <option value="S">Magiologue (Rang S)</option>
+                <option value="S+">Archmages (Rang S+)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="currentLevel">Niveau actuel :</label>
+            <input type="number" id="currentLevel" min="1">
+        </div>
+        <div class="form-group">
+            <label for="xpGained">XP gagné :</label>
+            <input type="number" id="xpGained" min="0">
+        </div>
+        <button onclick="calculateXP()">Calculer</button>
+        <button onclick="resetProgress()">Reset</button>
+        <div id="result"></div>
+        <h3>Progression en Niveau</h3>
+        <div class="progress-bar">
+            <div id="levelProgress" class="progress-bar-fill level-progress" style="width: 0%;">
+                <span class="progress-label" id="levelLabel">0</span>
+            </div>
+        </div>
+        <h3>Progression en XP</h3>
+        <div class="progress-bar">
+            <div id="xpProgress" class="progress-bar-fill xp-progress" style="width: 0%;">
+                <span class="progress-label" id="xpLabel">0</span>
+            </div>
+        </div>
+        <h3>XP restant avant le prochain niveau</h3>
+        <div class="progress-bar">
+            <div id="remainingXPProgress" class="progress-bar-fill remaining-xp-progress" style="width: 0%;">
+                <span class="progress-label" id="remainingXPLabel">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getXpForLevel(level) {
+            if (level >= 1 && level <= 14) return 100 * level;
+            if (level >= 15 && level <= 24) return 200 * level;
+            if (level >= 25 && level <= 39) return 400 * level;
+            if (level >= 40 && level <= 59) return 800 * level;
+            if (level >= 60 && level <= 79) return 1600 * level;
+            if (level >= 80 && level <= 99) return 3200 * level;
+            if (level >= 100 && level <= 119) return 6400 * level;
+            if (level >= 120) return 12800 * level;
+            return 0;
+        }
+
+        function getRank(level) {
+            if (level >= 1 && level <= 14) return "Débutant(e) (Rang F)";
+            if (level >= 15 && level <= 24) return "Apprenti(e) (Rang E)";
+            if (level >= 25 && level <= 39) return "Néophyte (Rang D)";
+            if (level >= 40 && level <= 59) return "Expert(e) (Rang C)";
+            if (level >= 60 && level <= 79) return "Spécialiste (Rang B)";
+            if (level >= 80 && level <= 99) return "Élite (Rang A)";
+            if (level >= 100 && level <= 119) return "Magiologue (Rang S)";
+            if (level >= 120) return "Archmages (Rang S+)";
+            return "";
+        }
+
+        function calculateXP() {
+            let currentLevel = parseInt(document.getElementById('currentLevel').value);
+            let xpGained = parseInt(document.getElementById('xpGained').value);
+
+            let totalXP = parseInt(localStorage.getItem('totalXP')) || 0;
+            totalXP += xpGained;
+
+            let currentXP = parseInt(localStorage.getItem('currentXP')) || 0;
+            currentXP += xpGained;
+
+            let xpForNextLevel = getXpForLevel(currentLevel);
+            let leveledUp = false;
+            let previousRank = getRank(currentLevel);
+
+            while (currentXP >= xpForNextLevel) {
+                currentXP -= xpForNextLevel;
+                currentLevel++;
+                xpForNextLevel = getXpForLevel(currentLevel);
+                leveledUp = true;
+            }
+
+            let newRank = getRank(currentLevel);
+
+            localStorage.setItem('totalXP', totalXP);
+            localStorage.setItem('currentXP', currentXP);
+            localStorage.setItem('currentLevel', currentLevel);
+
+            document.getElementById('currentLevel').value = currentLevel;
+
+            if (leveledUp) {
+                document.getElementById('result').innerHTML = `Bravo ! Vous montez de niveau !<br>Niveau : ${currentLevel} atteint !<br>XP actuel : ${totalXP}`;
+                if (newRank !== previousRank) {
+                    document.getElementById('result').innerHTML += `<br>Wow ! Vous êtes maintenant ${newRank} !`;
+                }
+            } else {
+                document.getElementById('result').innerHTML = `Niveau actuel : ${currentLevel}, XP actuel : ${totalXP}`;
+            }
+
+            updateProgressBars(currentLevel, currentXP, totalXP, xpForNextLevel);
+        }
+
+        function updateProgressBars(currentLevel, currentXP, totalXP, xpForNextLevel) {
+            const maxLevel = 120;
+            const maxXP = 10000000;
+
+            document.getElementById('levelProgress').style.width = (currentLevel / maxLevel) * 100 + '%';
+            document.getElementById('levelLabel').innerText = currentLevel;
+
+            document.getElementById('xpProgress').style.width = (totalXP / maxXP) * 100 + '%';
+            document.getElementById('xpLabel').innerText = totalXP;
+
+            document.getElementById('remainingXPProgress').style.width = (currentXP / xpForNextLevel) * 100 + '%';
+            document.getElementById('remainingXPLabel').innerText = currentXP + ' / ' + xpForNextLevel;
+        }
+
+        function resetProgress() {
+            if (confirm("Êtes-vous sûr de vouloir réinitialiser votre progression ?")) {
+                localStorage.setItem('totalXP', 0);
+                localStorage.setItem('currentXP', 0);
+                localStorage.setItem('currentLevel', 1);
+
+                document.getElementById('currentLevel').value = 1;
+                document.getElementById('xpGained').value = 0;
+                document.getElementById('result').innerHTML = '';
+
+                updateProgressBars(1, 0, 0, getXpForLevel(1));
+            }
+        }
+    </script>
+</body>
+</html>

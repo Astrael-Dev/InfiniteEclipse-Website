@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="website icon" href="profile.png" type="png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouverture de Coffres</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">Inventaire</a></li>
+            <li><a href="xpcalculator.html">Calculateur d'XP</a></li>
+            <li><a href="wallet.html">Portefeuille</a></li>
+            <li><a href="chestopener.html">Ouverture de Coffres</a></li>
+            <li><a href="quests.html">Quêtes</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Ouverture de Coffres</h1>
+        <div class="form-group">
+            <div class="chest-option">
+                <h3>Coffre Commun</h3>
+                <img src="coffres/coffre-commun.png" alt="Coffre Commun">
+                <button class="btn" onclick="openChest('common')">Ouvrir</button>
+            </div>
+            <div class="chest-option">
+                <h3>Coffre Rare</h3>
+                <img src="coffres/coffre-rare.png" alt="Coffre Rare">
+                <button class="btn" onclick="openChest('rare')">Ouvrir</button>
+            </div>
+            <div class="chest-option">
+                <h3>Coffre Épique</h3>
+                <img src="coffres/coffre-epique.png" alt="Coffre Épique">
+                <button class="btn" onclick="openChest('epic')">Ouvrir</button>
+            </div>
+            <div class="chest-option">
+                <h3>Coffre Légendaire</h3>
+                <img src="coffres/coffre-légendaire.png" alt="Coffre Légendaire">
+                <button class="btn" onclick="openChest('legendary')">Ouvrir</button>
+            </div>
+        </div>
+        <div id="lootResult"></div>
+        <h2>Historique des obtentions</h2>
+        <div id="lootHistory"></div>
+        <button class="btn" onclick="clearHistory()">Effacer l'historique</button>
+    </div>
+
+    <!-- Modal for chest opening -->
+    <div id="chestModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="slotMachine" class="slot-machine">
+                <div class="slot">
+                    <img src="loot/test.png" alt="test">
+                    <div>test</div>
+                </div>
+                <!-- Add more slots as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Section to display obtained loot -->
+    <div id="obtainedLoot" class="obtained-loot">
+        <div class="obtained-loot-content">
+            <div id="obtainedLootName" class="obtained-loot-name"></div>
+            <img id="obtainedLootImage" src="" alt="">
+            <div id="obtainedLootRarity" class="rarity"></div>
+        </div>
+    </div>
+
+    <script src="chestopener.js"></script>
+</body>
+</html>

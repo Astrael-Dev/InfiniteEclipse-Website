@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="website icon" href="profile.png" type="png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion d'Inventaire</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Inventaires</h2>
+        <ul id="inventoryNav">
+            <!-- Inventory links will be added here dynamically -->
+        </ul>
+        <button class="btn" onclick="showCreateInventoryModal()">Créer un inventaire</button>
+        <button class="btn" onclick="showRenameInventoryModal()">Renommer l'inventaire</button>
+        <button class="btn" onclick="removeCurrentInventory()">Supprimer l'inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+    </div>
+    <div class="container">
+        <div class="user-info">
+            <div class="dropdown">
+                <img id="profileImage" src="profile.png" alt="Profile Image" class="profile-image">
+                <div class="dropdown-content">
+                    <a href="#" onclick="showLoginModal()">Se connecter</a>
+                    <a href="#" onclick="showAccountModal()">Créer un nouveau compte</a>
+                    <a href="#" onclick="showChangeProfileImageModal()">Changer l'image de profil</a>
+                    <a href="#" id="logoutOption">Se déconnecter</a>
+                </div>
+            </div>
+            <span id="loggedInUser"></span>
+        </div>
+        <h1>Gestion d'Inventaire</h1>
+        <div class="form-group">
+            <label for="addItemName">Nom de l'objet:</label>
+            <input type="text" id="addItemName">
+        </div>
+        <div class="form-group">
+            <label for="addItemQuantity">Quantité:</label>
+            <input type="number" id="addItemQuantity">
+        </div>
+        <div class="form-group">
+            <label for="addItemImage">URL de l'image:</label>
+            <input type="text" id="addItemImage">
+        </div>
+        <div class="form-group">
+            <label for="addItemType">Type de l'objet:</label>
+            <select id="addItemType" onchange="handleTypeChange()">
+                <option value="">Sélectionnez un type</option>
+                <option value="Arme">Arme (Quantité max: 1)</option>
+                <option value="Armure">Armure (Quantité max: 1)</option>
+                <option value="Artéfact">Artéfact (Quantité max: 1)</option>
+                <option value="Consommable">Consommable (Quantité max: 99)</option>
+                <option value="Poisson">Poisson (Quantité max: 99)</option>
+                <option value="Insecte">Insecte (Quantité max: 99)</option>
+                <option value="Minerai">Minerai (Quantité max: 99)</option>
+                <option value="Fruit">Fruit (Quantité max: 99)</option>
+                <option value="Légume">Légume (Quantité max: 99)</option>
+                <option value="Fleur">Fleur (Quantité max: 99)</option>
+                <option value="Objet">Objet (Quantité max: 99)</option>
+            </select>
+        </div>
+        <div class="form-group" id="subTypeGroup" style="display: none;">
+            <label for="addItemSubType">Sous-type:</label>
+            <select id="addItemSubType">
+                <!-- Options will be added dynamically -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="addItemRarity">Rareté:</label>
+            <select id="addItemRarity">
+                <option value="1">Commun</option>
+                <option value="2">Peu commun</option>
+                <option value="3">Rare</option>
+                <option value="4">Épique</option>
+                <option value="5">Légendaire</option>
+                <option value="6">Mythique</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="addItemValue">Valeur:</label>
+            <input type="number" id="addItemValue" max="9999999999">
+        </div>
+        <button class="btn" onclick="addItem()">Ajouter</button>
+        <div id="inventoryList"></div>
+    </div>
+
+    <!-- Account Creation Modal -->
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAccountModal()">&times;</span>
+            <h2>Créer un compte</h2>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur:</label>
+                <input type="text" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe:</label>
+                <input type="password" id="password">
+                <input type="checkbox" onclick="togglePasswordVisibility()"> Afficher le mot de passe
+            </div>
+            <div class="form-group">
+                <label for="profileImageInput">Image de profil:</label>
+                <input type="file" id="profileImageInput" accept="image/*">
+            </div>
+            <button class="btn" onclick="createAccount()">Créer</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Se connecter</h2>
+            <div class="form-group">
+                <label for="loginUsername">Nom d'utilisateur:</label>
+                <input type="text" id="loginUsername">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Mot de passe:</label>
+                <input type="password" id="loginPassword">
+                <input type="checkbox" onclick="toggleLoginPasswordVisibility()"> Afficher le mot de passe
+            </div>
+            <button class="btn" onclick="login()">Se connecter</button>
+        </div>
+    </div>
+
+    <!-- Create Inventory Modal -->
+    <div id="createInventoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreateInventoryModal()">&times;</span>
+            <h2>Créer un inventaire</h2>
+            <div class="form-group">
+                <label for="newInventoryName">Nom de l'inventaire:</label>
+                <input type="text" id="newInventoryName">
+            </div>
+            <button class="btn" onclick="createInventory()">Créer</button>
+        </div>
+    </div>
+
+    <!-- Rename Inventory Modal -->
+    <div id="renameInventoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRenameInventoryModal()">&times;</span>
+            <h2>Renommer l'inventaire</h2>
+            <div class="form-group">
+                <label for="renameInventoryName">Nouveau nom de l'inventaire:</label>
+                <input type="text" id="renameInventoryName">
+            </div>
+            <button class="btn" onclick="renameInventory()">Renommer</button>
+        </div>
+    </div>
+
+    <!-- Change Profile Image Modal -->
+    <div id="changeProfileImageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeChangeProfileImageModal()">&times;</span>
+            <h2>Changer l'image de profil</h2>
+            <div class="form-group">
+                <label for="newProfileImageInput">Nouvelle image de profil:</label>
+                <input type="file" id="newProfileImageInput" accept="image/*">
+            </div>
+            <button class="btn" onclick="changeProfileImage()">Changer</button>
+        </div>
+    </div>
+
+    <!-- Remove Item Modal -->
+    <div id="removeItemModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRemoveItemModal()">&times;</span>
+            <h2>Supprimer un objet</h2>
+            <label for="removeItemQuantity">Quantité à supprimer :</label>
+            <input type="number" id="removeItemQuantity" min="1">
+            <button class="btn" onclick="confirmRemoveItem()">Confirmer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

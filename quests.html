@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quests.css">
+    <link rel="icon" href="profile.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quêtes</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">Inventaire</a></li>
+            <li><a href="xpcalculator.html">Calculateur d'XP</a></li>
+            <li><a href="wallet.html">Portefeuille</a></li>
+            <li><a href="chestopener.html">Ouverture de Coffres</a></li>
+            <li><a href="quests.html">Quêtes</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Quêtes</h1>
+        <div class="quests-section">
+            <h2>Quêtes non réalisées</h2>
+            <div class="quests-grid" id="not-started-quests"></div>
+        </div>
+        <div class="quests-section">
+            <h2>Quêtes en cours</h2>
+            <div class="quests-grid" id="in-progress-quests"></div>
+        </div>
+        <div class="quests-section">
+            <h2>Quêtes terminées</h2>
+            <div class="quests-grid" id="completed-quests"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="quest-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="quest-title"></h2>
+            <p><strong>Lieu :</strong> <span id="quest-location"></span></p>
+            <p><strong>Objectifs :</strong></p>
+            <ul id="quest-objectives"></ul>
+            <p><strong>Description :</strong> <span id="quest-description"></span></p>
+            <p><strong>Récompenses :</strong> <span id="quest-rewards"></span></p>
+            <button id="accept-quest-btn">Accepter la quête</button>
+        </div>
+    </div>
+
+    <script src="quests.js"></script>
+</body>
+</html>

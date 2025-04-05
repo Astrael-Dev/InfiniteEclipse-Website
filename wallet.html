@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="website icon" href="profile.png" type="png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Portefeuille</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="index.html">Inventaire</a></li>
+            <li><a href="xpcalculator.html">Calculateur d'XP</a></li>
+            <li><a href="wallet.html">Portefeuille</a></li>
+            <li><a href="chestopener.html">Ouverture de Coffres</a></li>
+            <li><a href="quests.html">Quêtes</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Gestion de Portefeuille</h1>
+        <div class="form-group">
+            <label for="walletAmount">Montant actuel :</label>
+            <div id="walletAmount">0 💎</div>
+        </div>
+        <div class="form-group">
+            <label for="transactionAmount">Montant de la transaction :</label>
+            <input type="number" id="transactionAmount" step="0.01">
+        </div>
+        <div class="form-group">
+            <label for="transactionName">Nom de la transaction :</label>
+            <input type="text" id="transactionName">
+        </div>
+        <button class="btn" onclick="addToWallet()">Ajouter</button>
+        <button class="btn" onclick="removeFromWallet()">Retirer</button>
+        <button class="btn" onclick="resetWallet()">Réinitialiser</button>
+        <h2>Historique des transactions</h2>
+        <div id="transactionHistory"></div>
+        <button class="btn" id="toggleReportButton" onclick="toggleReport()">Afficher le rapport complet</button>
+    </div>
+
+    <script>
+        let showAllTransactions = false;
+
+        function loadWallet() {
+            let wallet = parseFloat(localStorage.getItem('wallet')) || 0;
+            document.getElementById('walletAmount').innerText = wallet.toFixed(2) + ' 💎';
+            loadTransactionHistory();
+        }
+
+        function addToWallet() {
+            let transactionAmount = parseFloat(document.getElementById('transactionAmount').value);
+            let transactionName = document.getElementById('transactionName').value.trim();
+            if (isNaN(transactionAmount) || transactionAmount <= 0 || transactionName === '') {
+                alert('Veuillez entrer un montant et un nom de transaction valides.');
+                return;
+            }
+
+            let wallet = parseFloat(localStorage.getItem('wallet')) || 0;
+            wallet += transactionAmount;
+            localStorage.setItem('wallet', wallet);
+            addTransactionToHistory(transactionAmount, 'gain', transactionName);
+            loadWallet();
+        }
+
+        function removeFromWallet() {
+            let transactionAmount = parseFloat(document.getElementById('transactionAmount').value);
+            let transactionName = document.getElementById('transactionName').value.trim();
+            if (isNaN(transactionAmount) || transactionAmount <= 0 || transactionName === '') {
+                alert('Veuillez entrer un montant et un nom de transaction valides.');
+                return;
+            }
+
+            let wallet = parseFloat(localStorage.getItem('wallet')) || 0;
+            if (transactionAmount > wallet) {
+                alert('Fonds insuffisants.');
+                return;
+            }
+
+            wallet -= transactionAmount;
+            localStorage.setItem('wallet', wallet);
+            addTransactionToHistory(transactionAmount, 'loss', transactionName);
+            loadWallet();
+        }
+
+        function addTransactionToHistory(amount, type, name) {
+            let transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+            let transaction = {
+                amount: amount,
+                type: type,
+                name: name,
+                date: new Date().toLocaleString()
+            };
+            transactionHistory.push(transaction);
+            localStorage.setItem('transactionHistory', JSON.stringify(transactionHistory));
+            loadTransactionHistory();
+        }
+
+        function loadTransactionHistory() {
+            let transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+            let transactionHistoryDiv = document.getElementById('transactionHistory');
+            transactionHistoryDiv.innerHTML = '';
+
+            let transactionsToShow = showAllTransactions ? transactionHistory : transactionHistory.slice(-15);
+
+            transactionsToShow.forEach(transaction => {
+                let transactionDiv = document.createElement('div');
+                transactionDiv.style.color = transaction.type === 'gain' ? 'green' : 'red';
+                transactionDiv.innerText = `${transaction.date} - ${transaction.name} - ${transaction.type === 'gain' ? '+' : '-'}${transaction.amount.toFixed(2)} 💎`;
+                transactionHistoryDiv.appendChild(transactionDiv);
+            });
+
+            document.getElementById('toggleReportButton').innerText = showAllTransactions ? 'Afficher les 15 dernières transactions' : 'Afficher le rapport complet';
+        }
+
+        function toggleReport() {
+            showAllTransactions = !showAllTransactions;
+            loadTransactionHistory();
+        }
+
+        function resetWallet() {
+            if (confirm('Êtes-vous sûr de vouloir réinitialiser votre portefeuille et l\'historique des transactions ?')) {
+                localStorage.setItem('wallet', 0);
+                localStorage.setItem('transactionHistory', JSON.stringify([]));
+                loadWallet();
+            }
+        }
+
+        window.onload = loadWallet;
+    </script>
+</body>
+</html>
