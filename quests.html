@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="quests.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/quests.css">
     <link rel="icon" href="profile.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quêtes</title>
@@ -41,14 +41,17 @@
             <span class="close">&times;</span>
             <h2 id="quest-title"></h2>
             <p><strong>Lieu :</strong> <span id="quest-location"></span></p>
-            <p><strong>Objectifs :</strong></p>
+            <h3>Étape actuelle:</h3>
+            <p id="quest-current-step"></p>
+            <h3>Objectifs :</h3>
             <ul id="quest-objectives"></ul>
+            <h3>Récompenses :</h3>
+            <ul id="quest-rewards"></ul>
             <p><strong>Description :</strong> <span id="quest-description"></span></p>
-            <p><strong>Récompenses :</strong> <span id="quest-rewards"></span></p>
             <button id="accept-quest-btn">Accepter la quête</button>
         </div>
     </div>
 
-    <script src="quests.js"></script>
+    <script src="assets/js/quests.js"></script>
 </body>
 </html>

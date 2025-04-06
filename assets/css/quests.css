@@ -1,0 +1,216 @@
+/* Section des quêtes */
+.quests-section {
+    margin-bottom: 40px;
+}
+
+.quests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Cartes plus larges */
+    gap: 25px; /* Plus d'espace entre les cartes */
+}
+
+/* Cartes des quêtes */
+.quest-card {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url('fallback-image-url.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 550px; /* Cartes plus grandes */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    overflow: hidden;
+}
+
+.quest-card:hover {
+    transform: scale(1.05); /* Zoom léger au survol */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7); /* Ombre plus intense */
+}
+
+.quest-card h3 {
+    color: #ff6347; /* Couleur vive pour le titre */
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Effet de texte */
+}
+
+/* Conteneur des boutons */
+.quest-card .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les boutons */
+    margin-top: 10px;
+}
+
+/* Boutons des cartes */
+.quest-card button {
+    background: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 12px 0; /* Ajuste la hauteur du bouton */
+    border-radius: 25px; /* Boutons arrondis */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre sur les boutons */
+    width: 80%; /* Prend 80% de la largeur de la carte */
+    margin: 0 auto; /* Centre le bouton horizontalement */
+    display: block; /* Assure que le bouton est un bloc centré */
+    text-align: center;
+}
+
+.quest-card button:hover {
+    background: #ff4500; /* Couleur plus vive au survol */
+    transform: translateY(-3px); /* Légère élévation au survol */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
+}
+
+/* Badge "NOUVEAU" */
+.quest-card .new-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffd700; /* Jaune vif */
+    color: #8b4513; /* Marron foncé */
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #2c2c2c, #1e1e1e); /* Dégradé subtil */
+    padding: 40px;
+    border-radius: 25px;
+    width: 95%;
+    max-width: 800px; /* Plus grand modal */
+    text-align: left;
+    color: #e0e0e0;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); /* Ombre plus marquée */
+    animation: slideIn 0.4s ease-in-out;
+    overflow: hidden;
+    max-height: 90vh;
+    overflow-y: auto; /* Défilement vertical si nécessaire */
+}
+
+.modal-content h2 {
+    color: #ff6347;
+    margin-bottom: 25px;
+    font-size: 2.5em; /* Titre plus grand */
+    text-align: center;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+}
+
+.modal-content p {
+    margin: 15px 0;
+    line-height: 1.8;
+    font-size: 1.2em;
+}
+
+.modal-content h3 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    color: #ff6347;
+    text-align: left;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+}
+
+.modal-content ul {
+    margin: 15px 0;
+    margin-bottom: 20px;
+    padding-left: 25px;
+    list-style-type: disc;
+    font-size: 1.2em;
+}
+
+.modal-content ul li {
+    margin-bottom: 10px;
+}
+
+#accept-quest-btn {
+    background: #4caf50; /* Vert pour différencier */
+    color: #fff;
+    border: none;
+    max-height: 60px; /* Hauteur maximale du bouton */
+    padding: 10px; /* Bouton plus petit */
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 0.9em; /* Réduction de la taille du texte */
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 50%; /* Bouton plus étroit */
+    text-align: center;
+}
+
+#accept-quest-btn:hover {
+    background: #388e3c; /* Vert plus foncé au survol */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content .close:hover {
+    color: #ff6347;
+    transform: scale(1.2); /* Agrandissement au survol */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
