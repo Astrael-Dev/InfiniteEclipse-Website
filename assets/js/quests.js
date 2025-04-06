@@ -2,6 +2,9 @@ const quests = [
     {
         id: 1,
         name: "Les rôdeurs des plaines",
+        difficulty: "normal",
+        type: "Principale",
+        recommendedLevel: 5,
         image: "https://i.pinimg.com/736x/00/a8/d0/00a8d0d67edc3b8d4628df3445acc6bf.jpg",
         location: "Plaine du Prélude",
         steps: [
@@ -30,7 +33,31 @@ const quests = [
     },
     {
         id: 2,
+        name: "Les mages pénibles",
+        difficulty: "medium",
+        type: "Secondaire",
+        recommendedLevel: 10,
+        image: "https://i.pinimg.com/736x/59/4d/5e/594d5e573e019bcaff8c2d43800c8e59.jpg",
+        location: "Plaine du Prélude",
+        steps: [
+             {
+                name: "1. Les totémiers",
+                objectives: ["Tuer 5 Totémiers Aéromanciens", "Tuer 5 Totémiers de l'Entre-Terre"],
+                description: "Les Totémiers sont des espèces similaires aux gobelins, mais sont beaucoup plus minces et faibles physiquement. Ils ont comblé cette faiblesse par leur magie surprenante. Ils hantent les aventuriers, seriez-vous capable de les vaincre ?",
+                rewards: [
+                    { type: "xp", value: 3280 },
+                    { type: "money", value: 4000 }
+                ]
+             }
+        ]
+        
+    },
+    {
+        id: 3,
         name: "Les grincements du donjon oublié",
+        difficulty: "hard",
+        recommendedLevel: 30,
+        type: "Principale",
         image: "https://i.pinimg.com/736x/c8/aa/08/c8aa082173cf5e443039664a24c136d3.jpg",
         location: "Donjon des Pavés",
         steps: [
@@ -85,6 +112,9 @@ function resetQuestCache() {
                 parsedQuests[index].image = quest.image; // Réinitialise l'image
                 parsedQuests[index].location = quest.location; // Réinitialise le lieu
                 parsedQuests[index].steps = quest.steps; // Réinitialise les étapes
+                parsedQuests[index].difficulty = quest.difficulty; // Réinitialise la difficulté
+                parsedQuests[index].type = quest.type; // Réinitialise le type
+                parsedQuests[index].recommendedLevel = quest.recommendedLevel; // Réinitialise le niveau recommandé
             }
         });
 
@@ -145,9 +175,10 @@ function renderQuests() {
             questCard.appendChild(newBadge);
         }
 
-        // Add quest title and buttons
+        // Add quest title, difficulty, and buttons
         questCard.innerHTML += `
             <h3>${quest.name}</h3>
+            <p class="quest-difficulty">${getDifficultyStars(quest.difficulty)}</p>
         `;
 
         const buttonContainer = document.createElement("div");
@@ -188,8 +219,23 @@ function renderQuests() {
     });
 }
 
+function getDifficultyStars(difficulty) {
+    console.log("Difficulté reçue :", difficulty); // Ajout du log
+    const stars = {
+        easy: "⭐",
+        normal: "⭐⭐",
+        medium: "⭐⭐⭐",
+        hard: "⭐⭐⭐⭐",
+        intense: "⭐⭐⭐⭐⭐",
+        hardcore: "⭐⭐⭐⭐⭐⭐",
+        extreme: "⭐⭐⭐⭐⭐⭐⭐",
+        impossible: "⭐⭐⭐⭐⭐⭐⭐⭐",
+        ultimate: "⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+    };
+    return stars[difficulty.toLowerCase()] || ""; // Convertit en minuscules pour éviter les erreurs
+}
+
 function showQuestDetails(id) {
-    console.log(`showQuestDetails called with id: ${id}`); // Debugging
     const quest = quests.find(q => q.id === id);
     if (!quest) return;
 
@@ -198,35 +244,51 @@ function showQuestDetails(id) {
     // Titre de la quête
     document.getElementById("quest-title").textContent = quest.name;
 
+    // Difficulté de la quête
+    document.getElementById("quest-difficulty").innerHTML = `Difficulté : ${getDifficultyStars(quest.difficulty)}`;
+
     // Lieu de la quête
     document.getElementById("quest-location").textContent = quest.location;
 
-    // Nom de l'étape actuelle (mise à jour du contenu existant)
-    const stepTitle = document.getElementById("quest-current-step");
-    stepTitle.textContent = currentStep.name;
+    // Type de quête
+    document.getElementById("quest-type").textContent = quest.type;
 
-    // Récompenses de l'étape actuelle (avec type et valeur)
-    const rewardsList = document.getElementById("quest-rewards");
-    rewardsList.innerHTML = ""; // Clear existing content
-    currentStep.rewards.forEach(reward => {
-        const li = document.createElement("li");
-        if (reward.type === "xp") {
-            li.textContent = `XP : ${reward.value} 🌟`;
-        } else if (reward.type === "money") {
-            li.textContent = `Argent : ${reward.value} 💎`;
-        } else if (reward.type === "item") {
-            li.textContent = `Objet : ${reward.value} 🗡️`;
-        }
-        rewardsList.appendChild(li);
-    });
+    // Nom de l'étape actuelle
+    document.getElementById("quest-current-step").textContent = currentStep.name;
 
-    // Objectifs de l'étape actuelle (avec bullet points)
+    // Niveau recommandé
+    const recommendedLevel = quest.recommendedLevel || 1; // Par défaut, niveau 1 si non défini
+    const maxLevel = 200; // Niveau maximum
+    const progressPercentage = (recommendedLevel / maxLevel) * 100;
+
+    const levelBar = document.getElementById("recommended-level-bar");
+    const levelLabel = document.getElementById("recommended-level-label");
+
+    levelBar.style.width = `${progressPercentage}%`;
+    levelLabel.textContent = `Niveau ${recommendedLevel}`;
+
+    // Objectifs de l'étape actuelle
     const objectivesList = document.getElementById("quest-objectives");
     objectivesList.innerHTML = ""; // Clear existing content
     currentStep.objectives.forEach(objective => {
         const li = document.createElement("li");
         li.textContent = objective;
         objectivesList.appendChild(li);
+    });
+
+    // Récompenses de l'étape actuelle
+    const rewardsList = document.getElementById("quest-rewards");
+    rewardsList.innerHTML = ""; // Clear existing content
+    currentStep.rewards.forEach(reward => {
+        const li = document.createElement("li");
+        if (reward.type === "xp") {
+            li.innerHTML = `<span style="color: royalblue;">XP : ${reward.value} 🌟</span>`;
+        } else if (reward.type === "money") {
+            li.innerHTML = `<span style="color: gold;">Argent : ${reward.value} 💎</span>`;
+        } else if (reward.type === "item") {
+            li.innerHTML = `<span style="color: green;">Objet : ${reward.value} 🗡️</span>`;
+        }
+        rewardsList.appendChild(li);
     });
 
     // Description spécifique à l'étape actuelle
@@ -265,15 +327,25 @@ function finishStep(id) {
     } else {
         quest.status = "completed";
 
-        // Traiter les récompenses de la dernière étape
-        const finalStep = quest.steps[quest.currentStep];
-        finalStep.rewards.forEach(reward => {
-            if (reward.type === "money") {
-                addToWallet(reward.value, quest.name); // Ajoute l'argent au portefeuille
-            } else if (reward.type === "xp") {
-                addToXP(reward.value); // Ajoute l'XP au calculateur
-            }
+        // Calculer la somme totale des récompenses en argent pour toutes les étapes
+        let totalMoney = 0;
+        let totalXP = 0;
+
+        quest.steps.forEach(step => {
+            step.rewards.forEach(reward => {
+                if (reward.type === "money") {
+                    totalMoney += reward.value;
+                } else if (reward.type === "xp") {
+                    totalXP += reward.value;
+                }
+            });
         });
+
+        // Ajouter l'argent total au portefeuille
+        addToWallet(totalMoney, quest.name);
+
+        // Ajouter l'XP total au calculateur d'XP
+        addToXP(totalXP);
     }
 
     saveQuestsToLocalStorage(); // Sauvegarde l'état des quêtes

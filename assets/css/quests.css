@@ -156,25 +156,25 @@
 }
 
 #accept-quest-btn {
-    background: #4caf50; /* Vert pour différencier */
+    background: #ff6347; /* Couleur vive pour le bouton */
     color: #fff;
     border: none;
-    max-height: 60px; /* Hauteur maximale du bouton */
+    height: 40px; /* Hauteur maximale du bouton */
     padding: 10px; /* Bouton plus petit */
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease;
     font-size: 0.9em; /* Réduction de la taille du texte */
     font-weight: bold;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     display: block;
-    margin: 20px auto 0 auto;
+    margin: 20px 0 0 20px;
     width: 50%; /* Bouton plus étroit */
     text-align: center;
 }
 
 #accept-quest-btn:hover {
-    background: #388e3c; /* Vert plus foncé au survol */
+    background: #ff4500; /* Couleur plus vive au survol */
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
@@ -192,6 +192,53 @@
 .modal-content .close:hover {
     color: #ff6347;
     transform: scale(1.2); /* Agrandissement au survol */
+}
+
+.quest-difficulty {
+    font-size: 1.2em;
+    color: #ff6347; /* Couleur vive pour la difficulté */
+    margin: 5px 0;
+    text-align: center;
+}
+
+.quest-type {
+    font-size: 1em;
+    color: #4caf50; /* Vert pour le type de quête */
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Barre de progression pour le niveau recommandé */
+.progress-bar {
+    width: 100%;
+    background-color: #2c2c2c;
+    border-radius: 5px;
+    margin: 10px 0;
+    position: relative;
+    height: 20px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    line-height: 20px;
+}
+
+.recommended-level {
+    background-color: #800020; /* Rouge Bordeaux */
+}
+
+.progress-label {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
 }
 
 /* Animations */
