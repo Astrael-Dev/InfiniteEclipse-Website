@@ -227,7 +227,7 @@
 }
 
 .recommended-level {
-    background-color: #800020; /* Rouge Bordeaux */
+    background: linear-gradient(to right, #40e0d0, #2e8b57); /* Dégradé bleu turquoise à seafoam green */
 }
 
 .progress-label {

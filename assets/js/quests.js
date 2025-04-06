@@ -4,6 +4,7 @@ const quests = [
         name: "Les rôdeurs des plaines",
         difficulty: "normal",
         type: "Principale",
+        giver: "Habitants de Moleblue",
         recommendedLevel: 5,
         image: "https://i.pinimg.com/736x/00/a8/d0/00a8d0d67edc3b8d4628df3445acc6bf.jpg",
         location: "Plaine du Prélude",
@@ -36,6 +37,7 @@ const quests = [
         name: "Les mages pénibles",
         difficulty: "medium",
         type: "Secondaire",
+        giver: "Individu Anti-Sorcier",
         recommendedLevel: 10,
         image: "https://i.pinimg.com/736x/59/4d/5e/594d5e573e019bcaff8c2d43800c8e59.jpg",
         location: "Plaine du Prélude",
@@ -54,10 +56,41 @@ const quests = [
     },
     {
         id: 3,
+        name: "La chasse du maniaque",
+        difficulty: "intense",
+        recommendedLevel: 10,
+        type: "Secondaire",
+        giver: "Collectionneur d'Or",
+        image: "https://i.pinimg.com/736x/e6/21/91/e6219177a5dd3f8144f55aa2d82af58f.jpg",
+        location: "Plaine du Prélude",
+        steps: [
+            {
+                name: "1. La chasse",
+                objectives: ["Tuer des monstres afin de récupérer les coffres voulus par le Collectionneur d'Or", "Récupérer 10 Coffres communs", "Récupérer 5 Coffres rares"],
+                description: "Le Collectionneur d'Or est un homme étrange qui cherche à récupérer des coffres de monstres. Il vous a demandé de l'aider dans sa quête, avec une récompense généreuse si vous lui ramenez ces fameux coffres.",
+                rewards: [
+                    { type: "xp", value: 1000 },
+                    { type: "money", value: 2000 }
+                ]
+            },
+            {
+                name: "2. La récompense",
+                objectives: ["Retourner voir le Collectionneur d'Or", "Lui ramener les coffres"],
+                description: "Vous avez réussi à récupérer les coffres demandés. Retournez voir le Collectionneur d'Or afin de lui remettre les coffres.",
+                rewards: [
+                    { type: "xp", value: 5000 },
+                    { type: "money", value: 20000 }
+                ]
+            }
+        ]
+    },
+    {
+        id: 4,
         name: "Les grincements du donjon oublié",
         difficulty: "hard",
         recommendedLevel: 30,
         type: "Principale",
+        giver: "Habitants de Moleblue",
         image: "https://i.pinimg.com/736x/c8/aa/08/c8aa082173cf5e443039664a24c136d3.jpg",
         location: "Donjon des Pavés",
         steps: [
@@ -93,11 +126,76 @@ const quests = [
         currentStep: 0,
         newStep: false // Indique si une nouvelle étape a été atteinte
     },
+    {
+        id: 5,
+        name: "L'arrivée du sauveur?",
+        difficulty: "intense",
+        recommendedLevel: 30,
+        type: "Principale",
+        giver: "Habitants de Moleblue",
+        image: "https://i.pinimg.com/736x/ae/32/c4/ae32c434787495f58632d57c36b16ab8.jpg",
+        location: "Plaine du Prélude",
+        steps: [
+            {
+                name: "1. La prophétie",
+                objectives: ["Parler au Sage Sénile"],
+                description: "Le Sage Sénile a une prophétie à vous raconter, mais il faut le trouver.",
+                rewards: [
+                    { type: "xp", value: 500 },
+                    { type: "money", value: 1000 }
+                ]
+            },
+            {
+                name: "2. La quête du futur sauveur",
+                objectives: ["Prouver votre dévotion en tant que nouveau potentiel sauveur", "Tuer 20 Gobelins", "Tuer 10 Gobelins Bleus", "Tuer 2 Gobelins Alpha", "Tuer 5 Totémiers de chaque type", "Tuer 10 Zoblins"],
+                description: "Après avoir écouté la prophétie, le Sage Sénile vous a demandé de prouver votre valeur en tuant des monstres. Il vous a donné une liste de monstres à tuer.",
+                rewards: [
+                    { type: "xp", value: 6000 },
+                    { type: "money", value: 8000 }
+                ]
+            },
+            {
+                name: "3. Le retour au village",
+                objectives: ["Retourner à Moleblue", "Dire adieu et partir vers la Forêt des Damnés, un endroit interdit"],
+                description: "Vous avez prouvé votre valeur, mais le Sage Sénile vous a demandé de partir vers la Forêt des Damnés, un endroit interdit.",
+                rewards: [
+                    { type: "xp", value: 2000 },
+                    { type: "money", value: 1000 },
+                    { type: "item", value: "(Pour les mages) Les Septs Étoiles" },
+                    { type: "item", value: "(Pour les rôdeurs) Étoile Polaire"},
+                    { type: "item", value: "(Pour les guerriers) Plaie des Foudres"}
+                ]
+            }
+        ],
+        status: "not-started",
+        currentStep: 0,
+        newStep: false // Indique si une nouvelle étape a été atteinte
+    },
 ];
 
 // Sauvegarde des quêtes dans le localStorage
 function saveQuestsToLocalStorage() {
     localStorage.setItem("quests", JSON.stringify(quests));
+}
+
+function loadQuestsFromLocalStorage() {
+    const savedQuests = localStorage.getItem("quests");
+    if (savedQuests) {
+        const parsedQuests = JSON.parse(savedQuests);
+
+        // Charger les données sauvegardées dans les quêtes actuelles
+        quests.forEach((quest, index) => {
+            if (parsedQuests[index]) {
+                quest.status = parsedQuests[index].status || "not-started";
+                quest.currentStep = parsedQuests[index].currentStep || 0;
+                quest.newStep = parsedQuests[index].newStep || false;
+            }
+        });
+
+        console.log("Les quêtes ont été chargées depuis le localStorage !");
+    } else {
+        console.log("Aucune donnée de quête trouvée dans le localStorage. Utilisation des données par défaut.");
+    }
 }
 
 function resetQuestCache() {
@@ -111,10 +209,16 @@ function resetQuestCache() {
                 parsedQuests[index].name = quest.name; // Réinitialise le nom
                 parsedQuests[index].image = quest.image; // Réinitialise l'image
                 parsedQuests[index].location = quest.location; // Réinitialise le lieu
-                parsedQuests[index].steps = quest.steps; // Réinitialise les étapes
+                parsedQuests[index].steps = quest.steps.map((step, stepIndex) => {
+                    return {
+                        ...step,
+                        rewards: quest.steps[stepIndex].rewards // Réinitialise les récompenses
+                    };
+                });
                 parsedQuests[index].difficulty = quest.difficulty; // Réinitialise la difficulté
                 parsedQuests[index].type = quest.type; // Réinitialise le type
                 parsedQuests[index].recommendedLevel = quest.recommendedLevel; // Réinitialise le niveau recommandé
+                parsedQuests[index].giver = quest.giver; // Réinitialise l'émetteur
             }
         });
 
@@ -123,24 +227,6 @@ function resetQuestCache() {
         console.log("Les données cachées des quêtes ont été réinitialisées !");
     } else {
         console.log("Aucune donnée de quête trouvée dans le localStorage.");
-    }
-}
-
-// Réinitialise les données "cachées" des quêtes au chargement de la page
-resetQuestCache();
-
-// Charge les quêtes depuis le localStorage au démarrage
-loadQuestsFromLocalStorage();
-renderQuests();
-
-// Chargement des quêtes depuis le localStorage
-function loadQuestsFromLocalStorage() {
-    const savedQuests = localStorage.getItem("quests");
-    if (savedQuests) {
-        const parsedQuests = JSON.parse(savedQuests);
-        quests.forEach((quest, index) => {
-            quests[index] = { ...quest, ...parsedQuests[index] };
-        });
     }
 }
 
@@ -252,6 +338,9 @@ function showQuestDetails(id) {
 
     // Type de quête
     document.getElementById("quest-type").textContent = quest.type;
+
+    // Émetteur de la quête
+    document.getElementById("quest-giver").textContent = quest.giver;
 
     // Nom de l'étape actuelle
     document.getElementById("quest-current-step").textContent = currentStep.name;
