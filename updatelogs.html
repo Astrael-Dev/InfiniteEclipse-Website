@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags for character encoding and viewport settings -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title of the webpage -->
+    <title>Infinite Eclipse - Update Logs</title>
+    <!-- Link to the external CSS stylesheet -->
+    <link rel="stylesheet" href="assets/css/webside.css">
+    <link rel="stylesheet" href="assets/css/musicplayer.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="website icon" href="profile.png" type="png">
+    
+</head>
+<body>
+    <!-- Bouton pour ouvrir/fermer la sidebar -->
+    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+
+    <!-- Sidebar masquée par défaut -->
+    <div class="sidebar hidden">
+        <h2>Menu</h2>
+        <button class="btn" onclick="location.href='home-webside.html'">Acceuil</button>
+        <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+        <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+        <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+        <button class="btn" onclick="location.href='classments.html'">Classements</button>
+        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
+
+        <!-- Lecteur de musique -->
+        <div class="music-player">
+            <button id="muteButton" onclick="toggleMute()" aria-label="Activer ou désactiver le son">🔇</button>
+            <button id="playPauseButton" onclick="togglePlayPause()" aria-label="Lecture ou pause">▶️</button>
+            <select id="musicSelector" onchange="changeTrack()" aria-label="Sélectionner une piste">
+                <option value="sons/Whispers of the Wanderer.mp3">Whispers of the Wanderer</option>
+                <option value="sons/Whispers of the Ancient Plains.mp3">Whispers of the Ancient Plains</option>
+                <option value="sons/Waves of Fortune.mp3">Waves Of Fortune</option>
+            </select>
+            <div class="volume-control">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()" aria-label="Régler le volume">
+            </div>
+        </div>
+    </div>
+    <!-- Main content of the webpage -->
+    <section>
+        <!-- Section title -->
+        <h2>Mises à jour du RolePlay</h2>
+        <!-- Paragraph with information about the updates -->
+         <p>Les mises à jour du RolePlay sont des modifications apportées au RolePlay Infinite Eclipse. <br>Vous trouverez ici toutes les informations sur les mises à jour, les correctifs, les ajouts et les suppressions effectuées dans le projet et sur le serveur Discord.</br></p>
+         <p>Mais aussi, vous serez informés des évènements qui se passeront dans les scènes du roleplay. <br>N'oubliez pas rejoindre le <a href="https://discord.gg/JTmpgwbScd"  title="Serveur Discord">serveur Discord</a>!</br></p>
+    </section>
+    <section>
+        <!-- Section Title -->
+         <h2>Le RolePlay commence enfin ! Chapitre 1 : "Un Nouvel Espoir"</h2>
+         <article>
+            <h3>Contexte:</h3>
+            <p>Dans l'éclat mystique de Zéphyria, un monde où la magie danse depuis l'aube des temps, ses habitants, érudits des mystères arcanes, tissent des sortilèges entre les plaines caressées par la brise, les fjords ensorcelés, les déserts oniriques et les glaciers imprégnés de magie cristalline. Au sein de ce monde enchanteur, diverses races intelligentes cohabitent, tandis que des créatures étranges, évoquant des ombres fantastiques, peuplent les recoins les plus reculés.
+
+                L'épopée magique s'est écrite à travers la découverte des éléments, soumis à l'éclatante puissance des mages.</p> <p>Certains maniaient l'épée enchantée, d'autres la magie pure. Alors que des nations émergeaient et que des royaumes s'élevaient, une sombre ombre commença à s'étendre. Des individus maléfiques exploitaient la magie à des fins néfastes, plongeant le monde dans un tourbillon de chaos.</p>
+                
+                <p>Alors que Zéphyria venait de se libérer de l'Ère du Supplice, la paix n'était encore d'une illusion, alors que les entrailles du temps se déchiraient, des menaces apparaissent menant notre monde au bord de la chute une nouvelle fois. Alors que l'anarchie totale approche, un dernier espoir toque à nos portes. Ce serait le retour d'un(e) héros/héroïne...</p>
+                
+                <p>Sauverez-vous Zéphyria, ou allez-vous réduire ce monde en éclats de cendres?
+            </p>
+
+        </article>
+        <h3>Update Log - Version 1.0.0 </h3>
+        <article>
+        <p>Voilà ce qui est prévu pour <strong>la toute première version du Roleplay.</strong></p>
+            <ul>
+                <li><strong>La Plaine du Prélude 🌳</strong> : En plus de deux villages, cette plaine gigantesque vous promets un début d'aventure incroyable</li>
+            <li><strong>La Forêt des Damnés 🎃</strong> : Cette forêt hantée, habitée par les esprits et des boss mythiques vous donnera des frissons.</li>
+        <li><strong>Le Grand Glacier de Kolmo 🏔️</strong> Ce massif grandiose, avec son sommet culminant, constitue un rempart presque infranchissable, dont les flancs déchiquetés sont recouverts d'une neige perpétuelle et ornés de stalactites menaçantes.</li>
+            </ul>
+        </article>
+        <article>
+            <h3>Mais aussi...</h3>
+            <ul>
+                <li>Plus de 50+ Armes ⚔️</li>
+                <li>Plus de 50+ Armures 🛡️</li>
+                <li>Plus de 50+ Artéfacts 🏺</li>
+                <li>Plus de 30+ Monstres 🦹</li>
+                <li>Plus de 5+ Boss 🦾</li>
+                <li>Des quêtes légendaires 📜</li>
+                <li>Des évènements aléatoires 🎲</li>
+                <li>Des donjons mystérieux 🔮</li>
+                <li>Des trésors cachés 📦</li>
+                <li>Des secrets à découvrir 👁️‍🗨️</li>
+            </ul>
+            <p>Pour profiter de tout ça, joignez-vous au serveur Discord ! Et n'oubliez pas de télécharger le Gestionnaire de Personnages.</p>
+        </article>
+    </section>
+        <div class="discord-button-container">
+            <a href="https://discord.gg/JTmpgwbScd"  title="Rejoignez le serveur Discord d'Infinite Eclipse!" class="discord-button">
+                <span>Rejoignez-nous sur Discord!</span>
+                <img src="discord-logo.png" alt="Discord" class="discord-logo">
+        </div></a>
+        <!-- Paragraph with information about the roleplay and discord server version 1.0.0 -->
+    </section>
+    <footer>
+        <!-- Footer with copyright information -->
+        <div class="websiteinfo">
+            <h4>Informations à propos du site</h4>
+                <ul>
+                    <li>Version du site : 1.0.1</li>
+                    <li>Dernière mise à jour : "02/01/2025"</li>
+                    <li>© 2024 Infinite Eclipse. Tous droits réservés.</li>
+                </ul>
+        </div>
+        </footer>
+    <script src="assets/js/MusicPlayer.js"></script>
+    <script src="assets/js/Sidebar.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll; /* Ensure vertical scrolling is enabled */
+}
+
+header {
+    width: 100%;
+    margin: auto;
+    font-size: small;
+    font-family: Poppins, Arial, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #333;
+    border-radius: 15px;
+    position: relative; /* Add this to position the buttons */
+    padding: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5em 1em; /* Add some padding for better appearance */
+    background-color: transparent; /* Transparent background */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+header a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+header h1 {
+    margin: 0;
+    padding: 5px;
+    font-size: 2em;
+    font-weight: 800;
+    color: #ff6347;
+}
+
+header img {
+    width: auto;
+    height: 100px;
+    padding: 1em;
+    align-self: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 1em;
+}
+
+nav ul a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    background-color: transparent;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #1e1e1e;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    animation: slideInLeft 0.5s ease-in-out;
+}
+
+.sidebar h2 {
+    color: #ff6347;
+    text-align: center;
+    font-weight: 800;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background: #333;
+}
+
+/* Main Container */
+.container {
+    margin-left: 270px;
+    width: calc(100% - 350px);
+    background: #1e1e1e;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ff6347;
+    animation: slideIn 1s ease-in-out;
+    font-weight: 800;
+}
+
+section {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 400;
+    background-color: #2e2e2e;
+    padding: 1em;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2em;
+    color: #ffffff;
+    text-align: left;
+}
+
+section h2, section h3, section h4 {
+    color: #ff6347;
+    font-weight: 800;
+}
+
+section ul {
+    list-style-type: disc;
+    margin-left: 2em;
+}
+
+section ul li {
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+button {
+    background: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-size: 1em;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 200px;
+    font-weight: 400;
+}
+
+button:hover {
+    background: #ff4500;
+    transform: translateY(-2px);
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 400;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.download-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.browser-logo, .android-logo {
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 200px;
+    height: auto;
+}
+
+/* Discord Button */
+.discord-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.discord-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 270px;
+    height: 50px;
+    background-color: #7289DA;
+    border-radius: 30px;
+    text-decoration: none;
+    padding: 0 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: Poppins, Arial, sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.discord-button:hover {
+    background-color: #5b6eae;
+    transform: scale(1.1);
+}
+
+.discord-logo {
+    width: 20px;
+    height: auto;
+}
+
+/* Flex Container */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2em 0;
+}
+
+.win-download-container {
+    z-index: 1;
+    width: 400px; /* Set the width of the container */
+    margin-left: 2em; /* Add 2em space on the left side */
+    color: #ffffff;
+    background-color: #ff6347; /* Adjust the background color if needed */
+    padding: 2em;
+    border-radius: 15px;
+    font-family: Poppins, Arial, sans-serif; /* Use Poppins font */
+    font-size: 16px; /* Set font size */
+    font-weight: 800; /* Use Extrabold weight */
+    text-align: center; /* Center the button */
+    margin-top: 20px; /* Add some space above the button */
+    position: relative; /* Position relative for positioning elements inside */
+}
+
+.download-section, .instructions-section {
+    width: 80%;
+    box-sizing: border-box;
+}
+
+/* Footer */
+footer {
+    clear: both;
+    width: 100%;
+    background-color: #333;
+    color: #ffffff;
+    padding: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.websiteinfo {
+    font-family: 'Poppins', Arial, sans-serif;
+    list-style-type: none;
+    font-weight: 400;
+    background-color: #333;
+    color: #ffffff;
+    border-radius: 15px;
+    padding: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.websiteinfo ul {
+    list-style-type: none;
+    text-align: left;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

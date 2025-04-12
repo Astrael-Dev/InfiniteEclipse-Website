@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Eclipse - Gestionnaire de Personnages</title>
+    <link rel="stylesheet" href="assets/css/webside.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/musicplayer.css">
+    <link rel="website icon" href="profile.png" type="png">
+</head>
+<body>
+    <!-- Bouton pour ouvrir/fermer la sidebar -->
+    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+
+    <!-- Sidebar masquée par défaut -->
+    <div class="sidebar hidden">
+        <h2>Menu</h2>
+        <button class="btn" onclick="location.href='home-webside.html'">Acceuil</button>
+        <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+        <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+        <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+        <button class="btn" onclick="location.href='classments.html'">Classements</button>
+        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
+
+        <!-- Lecteur de musique -->
+        <div class="music-player">
+            <button id="muteButton" onclick="toggleMute()" aria-label="Activer ou désactiver le son">🔇</button>
+            <button id="playPauseButton" onclick="togglePlayPause()" aria-label="Lecture ou pause">▶️</button>
+            <select id="musicSelector" onchange="changeTrack()" aria-label="Sélectionner une piste">
+                <option value="sons/Whispers of the Wanderer.mp3">Whispers of the Wanderer</option>
+                <option value="sons/Whispers of the Ancient Plains.mp3">Whispers of the Ancient Plains</option>
+                <option value="sons/Waves of Fortune.mp3">Waves Of Fortune</option>
+            </select>
+            <div class="volume-control">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()" aria-label="Régler le volume">
+            </div>
+        </div>
+    </div>
+    <!-- Main content of the webpage -->
+    <section>
+        <!-- Section Title -->
+        <h2>Gestionnaire de Personnages</h2>
+        <!-- Paragraph with information about the character manager -->
+        <p>Le Gestionnaire de Personnages est un logiciel développé par Refssou pour Infinite Eclipse. Il vous permet de créer et gérer vos propres personnages pour le roleplay. <br>Ici, vous pouvez télécharger la dernière version du gestionnaire de personnages, mais aussi voir les différentes mises à jour apportées au logiciel.</br></p>
+    </section>
+    <section>
+        <!-- Section Title -->
+        <h3>Update Log - Version 1.0.0</h3>
+        <!-- Paragraph with information about the character manager version 1.0.0 -->
+        <article>
+            <h4>Ajouts:</h4>
+            <ul>
+                <li>Création de personnages avec des statistiques et des compétences.</li>
+                <li>Enregistrement des personnages créés pour une utilisation ultérieure.</li>
+                <li>Interface graphique améliorée pour une meilleure expérience utilisateur.</li>
+                <li>Formules de calcul pour le système de combat pour faciliter les combats à l'utilisateur.</li>
+                <li>Gestion totale du personnage : niveaux, statistiques, argent, armes, éléments, etc...</li>
+                <li>Carte interactive avec des informations sur chaque recoin du monde.</li>
+                <li>Base de données destinée au combat : techniques, sorts, monstres et autres.</li>
+                <li>Système d'équipement pour les pièces d'armures et des artéfacts.</li>
+                <li>Playlists musicales à thèmes pour une interface agréable et entraînante.</li>
+            </ul>
+            <h4>Corrections:</h4>
+            <ul>
+                <li>Correction de bugs mineurs dans l'interface utilisateur.</li>
+                <li>Optimisation des performances pour une utilisation plus fluide.</li>
+                <li>Compression du logiciel pour éviter des problèmes de stockage.</li>
+                <li>Séparation entre la version Windows (plus lourde avec les options complètes) et la version navigateur (plus légère mais avec des aspects manquants). <br>La version navigateur est fortement recommandée pour les utilisateurs sur mobile.</br></li>
+            </ul>
+        </article>          
+    </section>
+    <section>
+        <!-- Section Title -->
+        <h3>Update Log - Version 1.0.1</h3>
+        <!-- Paragraph with information about the character manager version 1.1.0 -->
+        <article>
+            <h4>Ajouts:</h4>
+            <ul>
+                <li>Base de données Firebase pour stocker les données des joueurs en temps réel afin de servir de rapports aux administrateurs.</li>
+                <li>Monstres restants qui manquaient dans la version 1.0.0.</li>
+            </ul>
+            <h4>Corrections:</h4>
+            <ul>
+                <li>Correction de bugs majeurs dans la base de données.</li>
+                <li>Correction de bugs mineurs dans l'interface utilisateur.</li>
+                <li>Supression de la version navigateur en raison de restrictions techniques, passage en .apk <br>pour les utilisateurs mobile.</br></li>
+            </ul>
+        </article>
+    </section>
+    <section>
+        <!-- Section Title -->
+        <h3>Update Log - Version 1.0.2</h3>
+        <!-- Paragraph with information about the character manager version 1.0.1a -->
+        <article>
+            <h4>Ajouts:</h4>
+            <ul>
+                <li>Boutons qui gèrent le zoom dans l'interface de la carte du monde pour les utilisateurs mobile.</li>
+                <li>Certaines données supplémentaires à la base de données Firebase.</li>
+                <li>Nouvelle carte du monde dans le menu de la carte du monde.</li>
+                <li>Bordures programées pour ne pas sortir de l'interface de la carte.</li>
+            </ul>
+            <h4>Corrections:</h4>
+            <ul>
+                <li>Correction de bugs mineurs dans l'interface utilisateur.</li>
+                <li>Correction d'erreurs mineures dans la base de données.</li>
+                <li>Correction de bugs mineurs dans l'interface de la map, concernant le zoom.</li>
+            </ul>
+        </article>
+    </section>
+    <section>
+        <!-- Section Title -->
+        <h3>Update Log - Version 1.0.3</h3>
+        <!-- Paragraph with information about the character manager version 1.0.1b -->
+        <article>
+            <h4>Ajouts:</h4>
+            <ul>
+                <li>Création des artéfacts</li>
+                <li>Sauvegarde des artéfacts</li>
+                <li>Affichage d'informations importantes en temps réel géré par le développeur <br>grâce à la base de données Firebase</br></li>
+            </ul>
+            <h4>Corrections:</h4>
+            <ul>
+                <li>Correction de bugs mineurs dans l'interface utilisateur.</li>
+                <li>Correction d'erreurs mineures dans la base de données.</li>
+                <li>Correction de bugs mineurs dans l'interface de la map, concernant le zoom.</li>
+                <li>Amélioration de carte par rapport à une zone manquante</li>
+            </ul>
+        </article>
+    </section>
+    <section>
+        <!-- Section Title -->
+        <h3>Update Log - Version 1.0.4</h3>
+        <!-- Paragraph with information about the character manager version 1.0.4 -->
+        <article>
+            <h4>Ajouts:</h4>
+            <ul>
+                <li>Coup Magique se basant sur les stats spéciales pour répondre aux difficultés des mages.</li>
+                <li>Messages directs en temps réels écrits depuis la base de données des administrateurs en cas de problème.</li>
+            </ul>  
+            <h4>Corrections:</h4>
+            <ul>
+                <li>Suppresion des Versions Windows et mobiles, accès direct sur le navigateur ajouté.</li>
+                <li>Suppresion des musiques de fond dans le logiciel, qui était la cause de quelques problèmes techniques.</li>
+                <li>Correction de bugs mineurs dans l'interface utilisateur.</li>
+                <li>Compression du logiciel.</li>
+            </ul>
+    </section>
+    <section>
+        <!-- Section Title -->
+        <h3>Update Log - Version 1.0.5</h3>
+        <article>
+            <h4>Ajouts:</h4>
+            <ul>
+                <li>Amélioration de l'affichage des statistiques.</li>
+                <li>Simplification textuelle et calculatoire pour faire lien entre Discord et le logiciel.</li>
+            </ul>
+            <h4>Corrections:</h4>
+            <ul>
+                <li>Problèmes mineurs liés au chargement du menu des équipements corrigés.</li>
+            </ul>
+        </article>
+    </section>
+    <div class="flex-container">
+        <div class="download-section">
+            <div class="win-download-container">
+                <img src="assets/images/navigateur-logo.png" alt="Browser Logo" width="100" height="auto" class="browser-logo">
+                <h2>Accédez à la dernière version <br>(Navigateur)</br></h2>
+                <a href="https://gd.games/games/c758178a-08d3-4470-89f3-a19f01ee89f6" class="download-button">Accéder</a>
+            </div>
+        </div>
+    </div>
+    <div class="discord-button-container">
+        <a href="https://discord.gg/JTmpgwbScd"  title="Rejoignez le serveur Discord d'Infinite Eclipse!" class="discord-button">
+            <span>Rejoignez-nous sur Discord!</span>
+            <img src="assets/images/discord-logo.png" alt="Discord" class="discord-logo">
+        </a>
+    </div>
+    <footer>
+        <!-- Footer with copyright information -->
+        <div class="websiteinfo">
+            <h4>Informations à propos du site</h4>
+            <ul>
+                <li>Version du site : 1.0.1</li>
+                <li>Dernière mise à jour : "02/01/2025"</li>
+                <li>© 2024 Infinite Eclipse. Tous droits réservés.</li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Scripts for functionality and interactivity -->
+    <script src="assets/js/Sidebar.js"></script>
+    <script src="assets/js/MusicPlayer.js"></script>
+</body>
+</html>

@@ -180,21 +180,48 @@ function saveQuestsToLocalStorage() {
 
 function loadQuestsFromLocalStorage() {
     const savedQuests = localStorage.getItem("quests");
+    let isDataValid = true; // Indicateur pour vérifier la validité des données
+
     if (savedQuests) {
         const parsedQuests = JSON.parse(savedQuests);
 
-        // Charger les données sauvegardées dans les quêtes actuelles
+        // Vérification des données sauvegardées
         quests.forEach((quest, index) => {
             if (parsedQuests[index]) {
-                quest.status = parsedQuests[index].status || "not-started";
-                quest.currentStep = parsedQuests[index].currentStep || 0;
-                quest.newStep = parsedQuests[index].newStep || false;
+                // Vérifie si les propriétés essentielles sont présentes et valides
+                if (
+                    !parsedQuests[index].name ||
+                    !parsedQuests[index].steps ||
+                    !Array.isArray(parsedQuests[index].steps) ||
+                    parsedQuests[index].steps.length === 0
+                ) {
+                    console.warn(`Données corrompues pour la quête ID ${quest.id}. Réinitialisation.`);
+                    isDataValid = false;
+                } else {
+                    // Charger les données valides
+                    quest.status = parsedQuests[index].status || "not-started";
+                    quest.currentStep = parsedQuests[index].currentStep || 0;
+                    quest.newStep = parsedQuests[index].newStep || false;
+                }
+            } else {
+                console.warn(`Données manquantes pour la quête ID ${quest.id}. Réinitialisation.`);
+                isDataValid = false;
             }
         });
 
-        console.log("Les quêtes ont été chargées depuis le localStorage !");
+        // Si les données sont valides, afficher un message
+        if (isDataValid) {
+            console.log("Les quêtes ont été chargées depuis le localStorage !");
+        }
     } else {
-        console.log("Aucune donnée de quête trouvée dans le localStorage. Utilisation des données par défaut.");
+        console.warn("Aucune donnée de quête trouvée dans le localStorage.");
+        isDataValid = false;
+    }
+
+    // Si les données sont invalides ou absentes, recréer une sauvegarde par défaut
+    if (!isDataValid) {
+        console.warn("Création d'une nouvelle sauvegarde par défaut.");
+        saveQuestsToLocalStorage();
     }
 }
 
@@ -240,6 +267,7 @@ function renderQuests() {
     inProgressContainer.innerHTML = "";
     completedContainer.innerHTML = "";
 
+    // Loop through all quests without filtering by type
     quests.forEach(quest => {
         const questCard = document.createElement("div");
         questCard.classList.add("quest-card");

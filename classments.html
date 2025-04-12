@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/quests.css">
+    <!-- Meta tags for character encoding and viewport settings -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title of the webpage -->
+    <title>Infinite Eclipse - Accueil</title>
+    <!-- Link to the external CSS stylesheet -->
+    <link rel="website icon" href="profile.png" type="png">
+    <link rel="stylesheet" href="assets/css/webside.css">
     <link rel="stylesheet" href="assets/css/musicplayer.css">
-    <link rel="icon" href="profile.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quêtes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
 </head>
 <body>
-    <!-- Bouton pour ouvrir/fermer la sidebar -->
+        <!-- Logo with a link to the homepage -->
+        <!-- Bouton pour ouvrir/fermer la sidebar -->
     <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
 
     <!-- Sidebar masquée par défaut -->
@@ -41,48 +46,58 @@
             </div>
         </div>
     </div> 
-    <div class="container">
-        <h1>Quêtes</h1>
-        <div class="quests-section">
-            <h2>Quêtes non réalisées</h2>
-            <div class="quests-grid" id="not-started-quests"></div>
-        </div>
-        <div class="quests-section">
-            <h2>Quêtes en cours</h2>
-            <div class="quests-grid" id="in-progress-quests"></div>
-        </div>
-        <div class="quests-section">
-            <h2>Quêtes terminées</h2>
-            <div class="quests-grid" id="completed-quests"></div>
-        </div>
-    </div>
+    <!-- Main content of the webpage -->
+     <section>
+        <h2>Classements</h2>
+        <h3>Les joueurs les plus riches du Roleplay.</h3>
+        <table>
+            <tr>
+                <th>Position</th>
+                <th>Pseudo</th>
+                <th>Argent 💎</th>
+            </tr>
+            <tr>
+                <td>1er</td>
+                <td>Ryonix</td>
+                <td>2 710 625 G</td>
+            </tr>
+            <tr>
+                <td>2ème</td>
+                <td>Astrael</td>
+                <td>19 280 G</td>
+            </tr>
+            <tr>
+                <td>3ème</td>
+                <td>refssou</td>
+                <td>4000 G</td>
+            </tr>
+        </table>
+    </section>
+    <section>
+        <h3>Les joueurs les plus forts du Roleplay.</h3>
+        <table>
+            <tr>
+                <th>Position</th>
+                <th>Pseudo</th>
+                <th>Niveau 💪</th>
+            </tr>
+            <tr>
+                <td>1er</td>
+                <td>Ryonix</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>2ème</td>
+                <td>Ryonix</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>3ème</td>
+                <td>Astrael</td>
+                <td>80</td>
+            </tr>
+    </section>
 
-    <!-- Modal -->
-    <div id="quest-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="quest-title"></h2>
-            <h3 id="quest-difficulty"></h3>
-            <p><strong>Lieu :</strong> <span id="quest-location"></span></p>
-            <p><strong>Type :</strong> <span id="quest-type"></span></p>
-            <p><strong>Émetteur(s) :</strong> <span id="quest-giver"></span></p>
-            <br><h3>Étape actuelle:</h3>
-            <p id="quest-current-step"></p>
-            <h3>Objectifs :</h3>
-            <ul id="quest-objectives"></ul>
-            <h3>Récompenses :</h3>
-            <ul id="quest-rewards"></ul>
-            <p><strong>Description :</strong> <span id="quest-description"></span></p>
-            <br><p><strong>Niveau recommandé :</strong></p>
-        <div class="progress-bar">
-            <div id="recommended-level-bar" class="progress-bar-fill recommended-level" style="width: 0%;">
-            <span class="progress-label" id="recommended-level-label">0</span>
-        </div>
-        <button id="accept-quest-btn">Accepter la quête</button>
-    </div>
-
-
-    <script src="assets/js/quests.js"></script>
     <script src="assets/js/MusicPlayer.js"></script>
     <script src="assets/js/Sidebar.js"></script>
 </body>

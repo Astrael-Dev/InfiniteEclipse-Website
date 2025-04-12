@@ -9,15 +9,20 @@
     <title>Ouverture de Coffres</title>
 </head>
 <body>
-    <div class="sidebar">
+    <!-- Button to open/close the sidebar -->
+    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+    <div class="sidebar hidden">
         <h2>Menu</h2>
-        <ul>
-            <li><a href="index.html">Inventaire</a></li>
-            <li><a href="xpcalculator.html">Calculateur d'XP</a></li>
-            <li><a href="wallet.html">Portefeuille</a></li>
-            <li><a href="chestopener.html">Ouverture de Coffres</a></li>
-            <li><a href="quests.html">Quêtes</a></li>
-        </ul>
+        <button class="btn" onclick="location.href='home-webside.html'">Acceuil</button>
+        <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+        <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+        <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+        <button class="btn" onclick="location.href='classments.html'">Classements</button>
+        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
     </div>
     <div class="container">
         <h1>Ouverture de Coffres</h1>

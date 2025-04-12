@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags for character encoding and viewport settings -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title of the webpage -->
+    <title>Infinite Eclipse - Accueil</title>
+    <!-- Link to the external CSS stylesheet -->
+    <link rel="stylesheet" href="assets/css/webside.css">
+    <link rel="stylesheet" href="assets/css/musicplayer.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="website icon" href="profile.png" type="png">
+    
+</head>
+<body>
+    <!-- Bouton pour ouvrir/fermer la sidebar -->
+    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+
+    <!-- Sidebar masquée par défaut -->
+    <div class="sidebar hidden">
+        <h2>Menu</h2>
+        <button class="btn" onclick="location.href='home-webside.html'">Acceuil</button>
+        <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+        <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+        <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+        <button class="btn" onclick="location.href='classments.html'">Classements</button>
+        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
+
+        <!-- Lecteur de musique -->
+        <div class="music-player">
+            <button id="muteButton" onclick="toggleMute()" aria-label="Activer ou désactiver le son">🔇</button>
+            <button id="playPauseButton" onclick="togglePlayPause()" aria-label="Lecture ou pause">▶️</button>
+            <select id="musicSelector" onchange="changeTrack()" aria-label="Sélectionner une piste">
+                <option value="sons/Whispers of the Wanderer.mp3">Whispers of the Wanderer</option>
+                <option value="sons/Whispers of the Ancient Plains.mp3">Whispers of the Ancient Plains</option>
+                <option value="sons/Waves of Fortune.mp3">Waves Of Fortune</option>
+            </select>
+            <div class="volume-control">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()" aria-label="Régler le volume">
+            </div>
+        </div>
+    </div>
+    <!-- Main content of the webpage -->
+    <section>
+        <!-- Section title -->
+        <h2>Accueil</h2>
+        <!-- Paragraph with a welcome message and project information -->
+        <p>Bienvenue sur le site d'Infinite Eclipse, un projet de roleplay complexe en ligne sur Discord fondé par Astrael. <br>Vous trouverez ici toutes les informations sur le projet, le serveur, et les mises à jours ou évènements, ainsi que l'avancée de notre gestionnaire de personnages développé par Refssou.</br> Vous pourrez télécharger le gestionnaire de personnages pour créer et gérer vos propres personnages <strong>une fois que vous aurez rejoint le serveur Discord.</strong></p>
+    </section>
+    <section>
+        <!-- Section title -->
+        <h2>Actualités</h2>
+        <!-- Article about the character manager version 1.0.0 -->
+        <article>
+            <h3>Version 1.0.0 du gestionnaire de personnages</h3>
+            <p>La version 1.0.0 du gestionnaire de personnages est sortie! Vous pouvez la télécharger <a href="caracthermanager.html"  title="Téléchargez la dernière version du gestionnaire de personnages">ici</a>.</p>
+        </article>
+        <!-- Article about the first chapter of the roleplay -->
+        <article>
+            <h3>Le Chapitre 1 : "Un Nouvel Espoir" est là !</h3>
+            <p>La toute première version du roleplay, qui marque le début du premier Chapitre du Roleplay : <strong>"Infinite Eclipse : Un Nouvel Espoir"</strong> va bientôt sortir. <br> Voilà à quoi vous attendre :</br>
+            <ul>
+                <!-- List of features in the first chapter -->
+                <li>Une collection d'une cinquantaine d'armes, de pièces d'armures et d'artéfacts. ⚔️</li>
+                <li>Trois lieux à explorer, remplis d'objets, de monstres et de dangers! 🗺️</li>
+                <li>Un système de combat et d'immersion en cours de développement. ☀️</li>
+                <li>Un logiciel de gestion de personnages et de combat élaboré, développé par Refssou. 🖥️</li> 
+            </ul>
+            <br>Pour plus de détails, allez voir les <a href="updatelogs.html"  title="Informez-vous des modifications faites au Roleplay.">Updates Logs.</a>
+            </br>
+            </p>
+        </article>
+    </section>
+    <div class="discord-button-container">
+    <a href="https://discord.gg/JTmpgwbScd"  title="Rejoignez le serveur Discord d'Infinite Eclipse!" class="discord-button">
+        <span>Rejoignez-nous sur Discord!</span>
+        <img src="discord-logo.png" alt="Discord" class="discord-logo">
+    
+</div></a>
+<footer>
+<!-- Footer with copyright information -->
+<div class="websiteinfo">
+        <h4>Informations à propos du site</h4>
+                    <ul>
+                        <li>Version du site : 1.0.1</li>
+                        <li>Dernière mise à jour : "02/01/2025"</li>
+                        <li>© 2024 Infinite Eclipse. Tous droits réservés.</li>
+                    </ul>
+</div>
+</footer>
+    <script src="assets/js/MusicPlayer.js"></script>
+    <script src="assets/js/Sidebar.js"></script>
+</body> 
+</html>

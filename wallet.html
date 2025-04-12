@@ -10,23 +10,34 @@
 </head>
 <body>
     <div class="sidebar">
+        <!-- Bouton pour ouvrir/fermer la sidebar -->
+    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+
+    <!-- Sidebar masquée par défaut -->
+    <div class="sidebar hidden">
         <h2>Menu</h2>
-        <ul>
-            <li><a href="index.html">Inventaire</a></li>
-            <li><a href="xpcalculator.html">Calculateur d'XP</a></li>
-            <li><a href="wallet.html">Portefeuille</a></li>
-            <li><a href="chestopener.html">Ouverture de Coffres</a></li>
-            <li><a href="quests.html">Quêtes</a></li>
-        </ul>
+        <button class="btn" onclick="location.href='home-webside.html'">Acceuil</button>
+        <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+        <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+        <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+        <button class="btn" onclick="location.href='classments.html'">Classements</button>
+        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
+
+        <!-- Lecteur de musique -->
         <div class="music-player">
-            <button id="muteButton" onclick="toggleMute()">🔇</button>
-            <button id="playPauseButton" onclick="togglePlayPause()">▶️</button>
-            <select id="musicSelector" onchange="changeTrack()">
+            <button id="muteButton" onclick="toggleMute()" aria-label="Activer ou désactiver le son">🔇</button>
+            <button id="playPauseButton" onclick="togglePlayPause()" aria-label="Lecture ou pause">▶️</button>
+            <select id="musicSelector" onchange="changeTrack()" aria-label="Sélectionner une piste">
                 <option value="sons/Whispers of the Wanderer.mp3">Whispers of the Wanderer</option>
                 <option value="sons/Whispers of the Ancient Plains.mp3">Whispers of the Ancient Plains</option>
+                <option value="sons/Waves of Fortune.mp3">Waves Of Fortune</option>
             </select>
             <div class="volume-control">
-                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()" aria-label="Régler le volume">
             </div>
         </div>
     </div>
@@ -142,5 +153,6 @@
         window.onload = loadWallet;
     </script>
     <script src="assets/js/musicplayer.js"></script>
+    <script src="assets/js/Sidebar.js"></script>
 </body>
 </html>
