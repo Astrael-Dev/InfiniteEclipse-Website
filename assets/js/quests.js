@@ -408,6 +408,8 @@ function renderQuests() {
         } else if (quest.status === "completed") {
             completedContainer.appendChild(questCard);
         }
+        console.log(`Traitement de la quête : ${quest.name}, Status : ${quest.status}`);
+        // Vérifiez si la quête est correctement ajoutée aux conteneurs
     });
 }
 
