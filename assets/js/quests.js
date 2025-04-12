@@ -87,7 +87,7 @@ const quests = [
     {
         id: 4,
         name: "Les grincements du donjon oublié",
-        difficulty: "hard",
+        difficulty: "hardcore",
         recommendedLevel: 30,
         type: "Principale",
         giver: "Habitants de Moleblue",
@@ -166,6 +166,84 @@ const quests = [
                     { type: "item", value: "(Pour les guerriers) Plaie des Foudres"}
                 ]
             }
+        ],
+        status: "not-started",
+        currentStep: 0,
+        newStep: false // Indique si une nouvelle étape a été atteinte
+    },
+    {
+        id: 6,
+        name: "Le fleuriste maladroit",
+        difficulty: "easy",
+        recommendedLevel: 5,
+        type: "Secondaire",
+        giver: "Fleuriste de Moleblue",
+        image: "https://i.pinimg.com/736x/d3/fd/e7/d3fde730319f03c01d55bd80f6fd7da3.jpg",
+        location: "Plaine du Prélude",
+        steps: [
+            {
+                name: "1. La cueillette",
+                objectives: ["Ramasser 10 fleurs se trouvant dans la Plaine du Prélude"],
+                description: "Le fleuriste de Moleblue est en panique, il a cassé ses pots et ruiné ses pousses, il vous demande de l'aider à récolter des fleurs.",
+                rewards: [
+                    { type: "xp", value: 200 },
+                    { type: "money", value: 500 }
+                ]
+            },
+            {
+                name: "2. La livraison",
+                objectives: ["Ramener les fleurs au fleuriste"],
+                description: "Vous avez récolté les fleurs, maintenant ramenez-les au fleuriste.",
+                rewards: [
+                    { type: "xp", value: 200 },
+                    { type: "money", value: 500 }
+                ]
+            }
+        ],
+        status: "not-started",
+        currentStep: 0,
+        newStep: false // Indique si une nouvelle étape a été atteinte
+    },
+    {
+        id: 7,  
+        name: "Les stocks des Cuisines Bellow",
+        difficulty: "easy",
+        recommendedLevel: 5,
+        type: "Journalière",
+        giver: "Cuisines Bellow",
+        image: "https://i.pinimg.com/736x/09/29/c6/0929c6043ee8350ccde54c3a9e0fa043.jpg",
+        location: "Plaine du Prélude",
+        steps: [
+            {
+                name: "1. Les bons légumes!",
+                objectives: ["Récolter 10 Oignons", "Récolter 10 Pommes de terre", "Récolter 10 Carottes", "Récolter 5 Choux", "Récolter 5 Tomates"],
+                description: "Les Cuisines Bellow ont besoin de légumes pour ses plats. Mais les employés ne peuvent pas s'aventurer dans les plaines en raison des hordes de monstres présentes, et la prochaine livraison par bateau se fait dans longtemps. Récoltez les légumes demandés.",
+                rewards: [
+                    { type: "xp", value: 200 },
+                    { type: "money", value: 500 },
+                    { type: "item", value: "Râgout de choux aux légumes et herbes" },
+                ]
+            },
+            {
+                name: "2. Fruits succulents!",
+                objectives: ["Récolter 10 Fruits Pastel", "Récolter 5 Baies Helena"],
+                description: "Les Cuisines Bellow ont aussi besoin de fruits pour ses plats. Allez récolter les fruits demandés.",
+                rewards: [
+                    { type: "xp", value: 200 },
+                    { type: "money", value: 500 },
+                    { type: "item", value: "Pomme royale à la Ruche" },
+                ]
+            },
+            {
+                name: "3. Les champignons Hashak!",
+                objectives: ["Récolter 5 Champignons Hashak"],
+                description: "Les Cuisines Bellow vous demande un dernier service: Ils ont besoin d'un certain type de champignon pour un plat spécial. Allez récolter les champignons demandés.",
+                rewards: [
+                    { type: "xp", value: 200 },
+                    { type: "money", value: 500 },
+                    { type: "item", value: "Myriade de champignons avec ses pommes de terre" },
+                ],
+            },
         ],
         status: "not-started",
         currentStep: 0,

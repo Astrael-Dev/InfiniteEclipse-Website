@@ -21,6 +21,14 @@ body {
     animation: slideInLeft 0.5s ease-in-out;
 }
 
+.sidebar img
+{
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
 .sidebar h2 {
     color: #ff6347;
     text-align: center;
