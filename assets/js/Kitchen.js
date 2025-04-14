@@ -516,16 +516,17 @@ function closeRecipeModal() {
 }
 
 // Fonction pour jouer une musique en boucle
-function playBackgroundMusic(audioFile="sons/Miitopia OST -  INN Meal.mp3") {
-    // Vérifie si la musique est déjà en cours de lecture
+function playBackgroundMusic(audioFile = "sons/Miitopia OST -  INN Meal.mp3") {
     const audio = new Audio(audioFile);
-    audio.loop = true; // Active la lecture en boucle
-    audio.volume = 0.8; // Définit le volume à 80%
+    audio.loop = true;
+    audio.volume = 0.8;
     audio.play().catch((error) => {
         console.error("Erreur lors de la lecture de la musique :", error);
     });
-    return audio; // Retourne l'objet audio pour un contrôle ultérieur si nécessaire
+    registerAudio(audio); // <== ENREGISTRE le son pour pouvoir le modifier plus tard
+    return audio;
 }
+
 
 // Appelle updateTimeCountdown toutes les secondes
 setInterval(updateTimeCountdown, 1000);
@@ -662,4 +663,35 @@ function getEffectIcon(effect) {
         froid: "❄️",
     };
     return icons[effect] || "";
+}
+
+// Liste pour stocker tous les objets audio
+const audioElements = [];
+
+// Fonction pour ajuster le volume global
+function adjustVolume(volume) {
+    audioElements.forEach(audio => {
+        audio.volume = volume;
+    });
+    console.log(`Volume réglé à : ${volume}`);
+}
+
+// Fonction pour enregistrer un objet audio
+function registerAudio(audio) {
+    audioElements.push(audio);
+}
+
+// Exemple : Enregistrer les sons existants
+pageFlipSound.volume = 0.8; // Volume initial
+registerAudio(pageFlipSound);
+
+// Si vous avez d'autres sons, enregistrez-les ici
+const cookingSound = new Audio("sons/Miitopia OST -  INN Meal.mp3");
+const itemSound = new Audio("sons/item-normal.mp3");
+itemSound.volume = 0.8; // Volume initial
+registerAudio(itemSound);
+
+// Exemple d'utilisation dans une fonction
+function playSound(audio) {
+    audio.play().catch(error => console.error("Erreur lors de la lecture du son :", error));
 }
