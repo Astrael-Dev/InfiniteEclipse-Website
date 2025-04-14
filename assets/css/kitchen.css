@@ -432,6 +432,7 @@ select option:hover {
 }
 
 /* Modale pour les résultats de recette */
+/* Modale pour les résultats de recette */
 #recipe-result-modal {
     display: hidden; /* Masqué par défaut */
     justify-content: center;
@@ -452,19 +453,22 @@ select option:hover {
 }
 
 #recipe-result-modal .modal-content {
+    font-size: 14px;
     display: flex;
-    flex-direction: row; /* Aligne les éléments horizontalement */
+    flex-direction: row; /* Aligne le contenu en ligne */
     align-items: center;
     justify-content: space-between;
     background: rgba(0, 0, 0, 0.8); /* Noir semi-transparent */
     border: none;
     border-radius: none;
+    margin-bottom: 8px;
     padding: 16px;
     width: 480px;
     color: #f0f0f0;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
     font-family: 'Poppins', sans-serif;
     text-align: center;
+    overflow: hidden; /* Empêche le débordement */
 }
 
 #recipe-name {
@@ -537,7 +541,6 @@ select option:hover {
     cursor: pointer;
     bottom: 100px;
     right: 42%;
-    position: fixed;
     transition: all 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     text-align: center;

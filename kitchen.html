@@ -22,6 +22,7 @@
        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+         <button class="btn" onclick="location.href='kitchen.html'">Cuisine</button>
        <button class="btn" onclick="location.href='classments.html'">Classements</button>
        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
    </div>
@@ -162,6 +163,21 @@
             </div>
         </div>
     </div>
+    <div id="recipe-result-modal" class="hidden">
+        <div class="modal-content">
+            <img id="recipe-img" src="" alt="Image de la recette" class="recipe-img">
+    
+            <div class="recipe-text">
+                <h2 id="recipe-name">Nom de la recette</h2>
+                <ul id="recipe-effects" class="effects-list">
+                    <!-- Effets -->
+                </ul>
+                <p id="recipe-desc">Description de la recette</p>
+                <button class="confirm-btn" onclick="closeRecipeModal()">Fermer</button>
+            </div>
+        </div>
+    </div>
+    
     <div id="recipe-book" class="hidden">
         <div id="book-content" class="book-content">
             <span class="close-book" onclick="closeRecipeBook()">x</span>

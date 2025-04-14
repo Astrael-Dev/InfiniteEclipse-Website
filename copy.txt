@@ -1,5 +1,0 @@
- data-slot="1">+</div>
-        <div class="hotspot-ingredient" style="top: 40%; left: 20%;" data-slot="2">+</div>
-        <div class="hotspot-ingredient" style="top: 40%; left: 30%;" data-slot="3">+</div>
-        <div class="hotspot-ingredient" style="top: 40%; left: 40%;" data-slot="4">+</div>
-        <div class="hotspot-ingredient" style="top: 40%; left: 50%;" data-slot="5">+</div>
