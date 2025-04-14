@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuisine</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/kitchen.css">
+    <link rel="website icon" href="profile.png" type="image/png">
+</head>
+<body>
+   <!-- Button to open/close the sidebar -->
+   <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+   <div class="sidebar hidden">
+       <img src="assets/images/infinite-eclipse-logo-c.png" alt="Logo">
+       <h2>Menu</h2>
+       <button class="btn" onclick="location.href='home-webside.html'">Acceuil</button>
+       <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+       <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+       <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+       <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+       <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+       <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+       <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+       <button class="btn" onclick="location.href='classments.html'">Classements</button>
+       <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
+   </div>
+
+    <!-- Conteneur principal -->
+    <div class="kitchen">
+        <h1>Bienvenue dans la cuisine</h1>
+        <p>Choisissez un ingrédient en cliquant sur les boutons "+" et faites vos meilleures recettes.</p>
+
+        <!-- Hotspots interactifs -->
+        <div class="hotspot hotspot-furnace" style="top: 70%; left: 75%;" data-slot="1" onclick="openModal(1)">+</div>
+        <div class="hotspot hotspot-ingredient" style="top: 40%; left: 20%;" data-slot="2" onclick="openModal(2)">+</div>
+        <div class="hotspot hotspot-ingredient" style="top: 40%; left: 30%;" data-slot="3" onclick="openModal(3)">+</div>
+        <div class="hotspot hotspot-ingredient" style="top: 40%; left: 40%;" data-slot="4" onclick="openModal(4)">+</div>
+        <div class="hotspot hotspot-ingredient" style="top: 40%; left: 50%;" data-slot="5" onclick="openModal(5)">+</div>
+
+        <!-- Boutons interactifs -->
+        <div class="interactive-buttons">
+            <div class="RecipeBook" onclick="showRecipeBook()">📖</div>
+            <div id=time-countdown style="font-size: 18px; color: #ffffff; text-align: center" class="TimeCountdown">⌛</div>
+            <div class="confirmRecipe" onclick="confirmRecipe()">🍽️ Préparer le plat</div>
+        </div>
+
+    <!-- Modale cachée par défaut -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Choisissez un ingrédient</h2>
+            <div class="modal-left">
+                <div class="dropdown">
+                    <label for="viandes">Viandes</label>
+                    <select id="viandes" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="steak">Steak</option>
+                        <option value="poulet">Poulet</option>
+                        <option value="gigot">Gigot</option>
+                        <option value="porc">Porc</option>
+                        <option value="saucisse">Saucisse</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="poissons">Poissons</label>
+                    <select id="poissons" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="saumon">Saumon</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="legumes">Légumes</label>
+                    <select id="legumes" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="carotte">Carotte</option>
+                        <option value="oignon">Oignon</option>
+                        <option value="pomme de terre">Pomme de terre</option>
+                        <option value="tomate">Tomate</option>
+                        <option value="radis">Radis</option>
+                        <option value="chou">Chou</option>
+                        <option value="poivron cloche">Poivron Cloche</option>
+                        <option value="citrouille">Citrouille</option>
+                        <option value="ail">Ail</option>
+                        <option value="olive">Olive</option>
+                        <option value="haricots rouges">Haricots Rouges</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="fruits">Fruits</label>
+                    <select id="fruits" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="pomme">Pomme</option>
+                        <option value="fruit pastel">Fruit Pastel</option>
+                        <option value="baie helena">Baie Helena</option>
+                        <option value="melon lavande">Melon Lavande</option>
+                        <option value="peche zaytin">Pêche Zaytin</option>
+                        <option value="myrtille">Myrtille</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="champignons">Champignons</label>
+                    <select id="champignons" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="champignon blanc">Champignon Blanc</option>
+                        <option value="champignon hashak">Champignon Hashak</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="epices">Épices</label>
+                    <select id="epices" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="poivre">Poivre</option>
+                        <option value="sel">Sel</option>
+                        <option value="cannelle">Cannelle</option>
+                        <option value="curry">Curry</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="liquides">Liquides</label>
+                    <select id="liquides" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="eau">Eau</option>
+                        <option value="lait de brebis">Lait de brebis</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="produits">Produits</label>
+                    <select id="produits" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="sucre">Sucre</option>
+                        <option value="miel">Miel</option>
+                        <option value="beurre">Beurre</option>
+                        <option value="creme fraiche">Crème fraiche</option>
+                        <option value="oeuf">Oeuf</option>
+                        <option value="blé">Blé</option>
+                        <option value="riz">Riz</option>
+                        <option value="chocolat">Chocolat</option>
+                        <option value="pain">Pain</option>
+                        <option value="café">Café</option>
+                        <option value="caramel salé">Caramel Salé</option>
+                        <option value="huile olive">Huile d'Olive</option>
+
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="combustibles">Combustibles</label>
+                    <select id="combustibles" class="category-select">
+                        <option value="">Choisir</option>
+                        <option value="bois">Bois</option>
+                        <option value="charbon">Charbon</option>
+                        <option value="pierre-volcanique">Pierre Volcanique</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-right">
+                <img id="ingredient-img" src="" alt="Image" class="ingredient-img hidden">
+                <h3 id="ingredient-name">Nom</h3>
+                <p id="ingredient-desc">Description</p>
+                <button class="select-btn" onclick="selectIngredient()">Sélectionner</button>
+                <button class="cancel-btn" onclick="closeModal()">Annuler</button>
+            </div>
+        </div>
+    </div>
+    <div id="recipe-book" class="hidden">
+        <div id="book-content" class="book-content">
+            <span class="close-book" onclick="closeRecipeBook()">x</span>
+            <div class="book-page left-page">
+                <div id="left-recipe" class="recipe-details"></div>
+            </div>
+            <div class="book-page right-page">
+                <div id="right-recipe" class="recipe-details"></div>
+            </div>
+            <button id="prev-page" class="page-btn" onclick="prevPage()">⬅️</button>
+            <button id="next-page" class="page-btn" onclick="nextPage()">➡️</button>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/Sidebar.js"></script>
+    <script src="assets/js/Kitchen.js"></script>
+</body>
+</html>
