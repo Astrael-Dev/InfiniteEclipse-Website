@@ -207,6 +207,7 @@ const recipes = [
         image: "plats/soupe-legumes-herbes.png",
         description: "Une soupe de légumes réconfortante, parfaite pour les jours froids.",
         effects: { pv: 50, pm: 30, defense: 30, "froid":true},
+        cookingTime: 4 * 60, // Temps en secondes (4 minutes)
     },
     {
         name: "Steak Grillé",
@@ -230,6 +231,7 @@ const recipes = [
         image: "plats/volcan-cacao.png",
         description: "Un volcan de chocolat chaud, avec un coeur fondant au chocolat. Une vraie protection contre le froid.",
         effects: { pv: 350, defense: 100, defenseMagique: 100, "froid":true},
+        cookingTime: 3 * 60, // Temps en secondes (3 minutes)
     }
 ];
 
