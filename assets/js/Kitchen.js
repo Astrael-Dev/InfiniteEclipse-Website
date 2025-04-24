@@ -13,7 +13,7 @@ const ingredients = [
     { id: "saucisse", name: "Saucisse", category: "viandes", image: "ingrédients/viandes/saucisse.png", description: "Une saucisse épicée." },
     
     // Poissons
-    { id: "saumon", name: "Saumon", category: "poissons", image: "assets/images/saumon.png", description: "Un filet de saumon frais." },
+    { id: "saumon", name: "Saumon", category: "poissons", image: "ingrédients/poissons/saumon.png", description: "Un filet de saumon frais." },
     
     // Légumes
     { id: "carotte", name: "Carotte", category: "legumes", image: "ingrédients/légumes/carotte.png", description: "Une carotte croquante." },
@@ -35,6 +35,7 @@ const ingredients = [
     { id: "melon lavande", name: "Melon Lavande", category: "fruits", image: "ingrédients/fruits/melon_lavande.png", description: "Un fruit exotique au goût sucré." },
     { id: "peche zaytin", name: "Pêche Zaytin", category: "fruits", image: "ingrédients/fruits/peche_zaytin.png", description: "La Pêche Zaytin, géante parmi les fruits, affiche une taille et un poids impressionnants, atteignant en moyenne celui d’un Diamante entier. Cette merveille naturelle regorge d’eau, de sucres (environ 20 % de son poids total) et de vitamines essentielles, en faisant une véritable mine d`énergie et de douceur." },
     { id: "myrtille", name: "Myrtille", category: "fruits", image: "ingrédients/fruits/myrtille.png", description: "Des myrtilles juteuses et acides." },
+    { id: "citron", name: "Citron", category: "fruits", image: "ingrédients/fruits/citron.png", description: "Un citron jaune et aux grandes feuilles." },
     
     // Champignons
     { id: "champignon blanc", name: "Champignon Blanc", category: "champignons", image: "ingrédients/champignons/champignon_blanc.png", description: "Un champignon blanc au goût simple et doux." },
@@ -60,10 +61,14 @@ const ingredients = [
     { id: "chocolat", name: "Chocolat", category: "produits", image: "ingrédients/produits/chocolat.png", description: "Du chocolat noir." },
     { id: "creme fraiche", name: "Crème Fraîche", category: "produits", image: "ingrédients/produits/crème_fraiche.png", description: "Une crème fraîche onctueuse." },
     { id: "café", name: "Café", category: "produits", image: "ingrédients/produits/café.png", description: "Des grains de café amers." },
-    { id: "caramel salé", name: "Caramel Salé", category: "produits", image: "ingrédients/produits/caramel_salee.png", description: "Un caramel salé irrésistible." },
+    { id: "caramel salé", name: "Caramel Salé", category: "produits", image: "ingrédients/produits/caramel_sale.png", description: "Un caramel salé irrésistible." },
     { id: "riz", name: "Riz", category: "produits", image: "ingrédients/produits/riz.png", description: "Du riz blanc." },
     { id: "pain", name: "Pain", category: "produits", image: "ingrédients/produits/pain.png", description: "Une miche de pain croustillante." },
     { id: "huile olive", name: "Huile d'Olive", category: "produits", image: "ingrédients/produits/huile_olive.png", description: "Une huile d'olive de qualité." },
+    { id: "emmental", name: "Emmental", category: "produits", image: "ingrédients/produits/emmental.png", description: "Un fromage à pâte dure." },
+    { id: "camembert", name: "Camembert", category: "produits", image: "ingrédients/produits/camembert.png", description: "Un fromage crémeux." },
+    { id: "chevre", name: "Chèvre", category: "produits", image: "ingrédients/produits/chevre.png", description: "Un fromage au lait de brebis." },
+    { id: "roquefort", name: "Roquefort", category: "produits", image: "ingrédients/produits/roquefort.png", description: "Un fromage bleu au goût fort." },
 
     // Combustibles
     { id: "bois", name: "Bois", category: "combustibles", image: "ingrédients/combustibles/bois.png", description: "Du bois pour alimenter le feu." },
@@ -232,7 +237,56 @@ const recipes = [
         description: "Un volcan de chocolat chaud, avec un coeur fondant au chocolat. Une vraie protection contre le froid.",
         effects: { pv: 350, defense: 100, defenseMagique: 100, "froid":true},
         cookingTime: 3 * 60, // Temps en secondes (3 minutes)
-    }
+    },
+    {
+        name: "Côtes de porc au poivre",
+        ingredients: ["porc", "poivre", "carotte", "beurre"],
+        image: "plats/cotes-porc-poivre.png",
+        description: "Des côtes de porc juteuses, accompagnées d'une sauce au poivre et servies avec des carottes.",
+        effects: { pv: 400, attaque: 170, defense: 50, agilite: 50 },
+        cookingTime: 10 * 60, // Temps en secondes (10 minutes)
+    },
+    {
+        name: "Saumon Grillé",
+        ingredients: ["saumon", "citron", "sel", "beurre"],
+        image: "plats/saumon-grille.png",
+        description: "Un saumon grillé à la perfection, assaisonné de citron et de sel.",
+        effects: { pv: 700, attaque: 250, defense: 150, defenseMagique: 100 },
+        cookingTime: 12 * 60, // Temps en secondes (12 minutes)
+    },
+    {
+        name: "Triple Poivrons Farcis",
+        ingredients: ["poivron cloche", "steak", "creme fraiche", "tomate"],
+        image: "plats/triple-poivrons-farcis.png",
+        description: "Trois poivrons farcis de viande, de crème et de tomates.",
+        effects: { pv: 500, defense: 300, defenseMagique: 150, froid: "Résistance"},
+        cookingTime: 8 * 60, // Temps en secondes (8 minutes)
+    },
+    {
+        name: "Soupe aux Champignons",
+        ingredients: ["champignon blanc", "champignon blanc", "creme fraiche", "beurre"],
+        image: "plats/soupe-champignons.png",
+        description: "Une soupe crémeuse aux champignons, parfaite pour les jours froids.",
+        effects: { pv: 200, attaqueMagique: 100, defenseMagique: 100, froid: "Résistance"},
+        cookingTime: 5 * 60, // Temps en secondes (5 minutes)
+    },
+    {
+        name: "Tarte au Citron Meringuée",
+        ingredients: ["citron", "sucre", "beurre", "oeuf"],
+        image: "plats/tarte-citron-meringuee.png",
+        description: "Une tarte au citron meringuée, sucrée et acidulée à la fois.",
+        effects: { pv: 700, attaqueMagique: 310, defenseMagique: 150 },
+        cookingTime: 6 * 60, // Temps en secondes (6 minutes)
+    },
+    {
+        // Pizza aux champignons
+        name: "Pizza aux Champignons",
+        ingredients: ["pain", "champignon blanc", "beurre", "emmental"],
+        image: "plats/pizza-champignons.png",
+        description: "Une pizza croustillante garnie de champignons et de fromage.",
+        effects: { pv: 300, defense: 100, defenseMagique: 100, agilite: 200},
+        cookingTime: 8 * 60, // Temps en secondes (8 minutes)
+    },
 ];
 
 
@@ -304,13 +358,13 @@ function selectIngredient() {
             // Vérifie si l'ingrédient est un combustible
             if (ingredient.category === "combustibles") {
                 if (!hotspot.classList.contains("hotspot-furnace")) {
-                    alert("Les combustibles doivent être placés dans le hotspot-furnace !");
+                    alert("Les combustibles doivent être placés dans le four !");
                     return;
                 }
             } else {
                 // Vérifie que les ingrédients non combustibles ne sont pas placés dans le hotspot-furnace
                 if (hotspot.classList.contains("hotspot-furnace")) {
-                    alert("Seuls les combustibles peuvent être placés dans le hotspot-furnace !");
+                    alert("Seuls les combustibles peuvent être placés dans le four !");
                     return;
                 }
             }
@@ -512,6 +566,37 @@ function startCooking(recipe) {
     }, cookingTime * 1000);
 }
 
+function checkCookingStatus() {
+    const cookingData = JSON.parse(localStorage.getItem("cookingData"));
+
+    if (cookingData) {
+        const { recipe, endTime } = cookingData;
+        const currentTime = Date.now();
+        const timeLeft = Math.max(0, Math.floor((endTime - currentTime) / 1000)); // Temps restant en secondes
+
+        if (timeLeft > 0) {
+            // Met à jour le compte à rebours
+            const countdownElement = document.getElementById("time-countdown");
+            if (countdownElement) {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                countdownElement.textContent = `${minutes}m ${seconds}s`;
+            }
+
+            // Continue la cuisson
+            setTimeout(() => {
+                isCooking = false;
+                localStorage.removeItem("cookingData");
+                showRecipeResult(recipe);
+            }, timeLeft * 1000);
+        } else {
+            // Si le temps est écoulé, affiche directement le plat
+            showRecipeResult(recipe);
+            localStorage.removeItem("cookingData");
+        }
+    }
+}
+
 function closeRecipeModal() {
     const modal = document.getElementById("recipe-result-modal");
     modal.classList.add("hidden"); // Ajoute la classe "hidden" pour masquer le modal
@@ -661,6 +746,7 @@ function getEffectIcon(effect) {
         attaqueMagique: "🔮",
         defenseMagique: "✴️",
         agilite: "🥾",
+        endurance: "✳️",
         chaud: "🔥",
         froid: "❄️",
     };
@@ -697,3 +783,8 @@ registerAudio(itemSound);
 function playSound(audio) {
     audio.play().catch(error => console.error("Erreur lors de la lecture du son :", error));
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Document is fully loaded and DOMContentLoaded event fired.");
+    checkCookingStatus();
+});
