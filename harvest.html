@@ -58,40 +58,52 @@
     </section>
 
     <!-- Modal pour définir les paramètres de récolte -->
-    <div id="harvest-modal" class="hidden">
+    <dialog id="harvest-modal">
+        <form method="dialog" id="harvest-form" class="modal-content">
+          <button class="close" aria-label="Fermer">&times;</button>
+          <h2>Définir les paramètres de récolte</h2>
+      
+          <!-- Fields -->
+          <label for="zone">Zone de récolte :</label>
+          <select id="zone" required>
+            <option value="plaine-prélude">Plaine du Prélude</option>
+            <option value="foret-damnés">Forêt des Damnés</option>
+            <option value="falaises-baron">Falaises de Baron</option>
+          </select>
+      
+          <label for="season">Saison :</label>
+          <select id="season" required>
+            <option value="aube">Aube</option>
+            <option value="printemps">Printemps</option>
+            <option value="été">Été</option>
+            <option value="pluie">Pluies</option>
+            <option value="automne">Automne</option>
+            <option value="hiver">Hiver</option>
+            <option value="sommeil">Sommeils</option>
+          </select>
+      
+          <label for="type">Type recherché :</label>
+          <select id="type" required>
+            <option value="fruit">Fruit</option>
+            <option value="légume">Légume</option>
+            <option value="fleur">Fleur</option>
+          </select>
+      
+          <button type="submit">Récolter</button>
+        </form>
+      </dialog>
+      
+      <dialog id="harvest-result-modal">
         <div class="modal-content">
-            <span class="close" id="closeModalBtn">&times;</span>
-            <h2>Définir les paramètres de récolte</h2>
-            <form id="harvest-form">
-                <label for="zone">Zone de récolte :</label>
-                <select id="zone" required>
-                    <option value="plaine-prélude">Plaine du Prélude</option>
-                    <option value="foret-damnés">Forêt des Damnés</option>
-                    <option value="falaises-baron">Falaises de Baron</option>
-                </select>
-
-                <label for="season">Saison :</label>
-                <select id="season" required>
-                    <option value="aube">Aube</option>
-                    <option value="printemps">Printemps</option>
-                    <option value="été">Été</option>
-                    <option value="pluie">Pluies</option>
-                    <option value="automne">Automne</option>
-                    <option value="hiver">Hiver</option>
-                    <option value="sommeil">Sommeils</option>
-                </select>
-
-                <label for="type">Type recherché :</label>
-                <select id="type" required>
-                    <option value="fruit">Fruit</option>
-                    <option value="légume">Légume</option>
-                    <option value="fleur">Fleur</option>
-                </select>
-
-                <button type="submit">Récolter</button>
-            </form>
+          <img id="result-img" src="" alt="Image de l'objet récolté" class="result-img">
+          <div class="result-text">
+            <h2 id="result-name">Nom de l'objet</h2>
+            <p id="result-desc">Description de l'objet</p>
+            <p id="result-rarity">Rareté : <span></span></p>
+            <button class="confirm-btn" id="closeResultModalBtn">Fermer</button>
+          </div>
         </div>
-    </div>
+      </dialog>
 
     <!-- Modal pour afficher le résultat de la récolte -->
     <div id="harvest-result-modal" class="hidden">

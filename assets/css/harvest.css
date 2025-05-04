@@ -65,10 +65,16 @@ button, .btn {
     color: #e0e0e0;
 }
 
-/* Styles pour les modals */
-.hidden {
-    display: none;
-}
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  dialog {
+    border: none;
+    border-radius: 15px;
+    padding: 0;
+    background: transparent;
+  }
 
 #harvest-modal, #harvest-result-modal {
     position: fixed;

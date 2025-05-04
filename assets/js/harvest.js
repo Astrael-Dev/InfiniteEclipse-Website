@@ -1,18 +1,18 @@
-// Variables pour les modals
+// Références des modals
 const modal = document.getElementById("harvest-modal");
 const resultModal = document.getElementById("harvest-result-modal");
+
+// Boutons
 const openModalBtn = document.getElementById("openModalBtn");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const closeResultModalBtn = document.getElementById("closeResultModalBtn");
 
-// Variables pour le formulaire et l'historique
+// Formulaire et historique
 const harvestForm = document.getElementById("harvest-form");
 const historyList = document.getElementById("history-list");
-
-// Historique des récoltes
 let harvestHistory = JSON.parse(localStorage.getItem("harvestHistory")) || [];
 
-// Constante des zones et des objets disponibles
+// Données des zones
 const zones = {
     "plaine-prélude": {
         fruits: ["f0001", "f0002"],
@@ -31,17 +31,7 @@ const zones = {
     }
 };
 
-// Fonction pour ouvrir un modal
-function openModal(modalElement) {
-    modalElement.classList.remove("hidden");
-}
-
-// Fonction pour fermer un modal
-function closeModal(modalElement) {
-    modalElement.classList.add("hidden");
-}
-
-// Fonction pour générer un objet récolté
+// Générer une récolte
 function generateHarvest(type, zone, season) {
     const items = {
         fruit: [
@@ -61,95 +51,80 @@ function generateHarvest(type, zone, season) {
         ]
     };
 
-    // Vérifier si la zone existe dans la constante zones
-    if (!zones[zone]) {
-        console.error(`Zone "${zone}" non définie.`);
-        return null;
-    }
+    if (!zones[zone]) return null;
+    const availableIds = zones[zone][`${type}s`];
+    if (!availableIds) return null;
 
-    // Obtenir les IDs des objets disponibles dans la zone pour le type sélectionné
-    const availableIds = zones[zone][`${type}s`]; // Exemple : "fruits", "légumes", "fleurs"
-    if (!availableIds) {
-        console.error(`Type "${type}" non défini pour la zone "${zone}".`);
-        return null;
-    }
+    const pool = items[type].filter(item =>
+        availableIds.includes(item.id) && item.seasons.includes(season)
+    );
+    if (pool.length === 0) return null;
 
-    // Filtrer les objets disponibles dans la saison sélectionnée
-    const pool = items[type].filter(item => availableIds.includes(item.id) && item.seasons.includes(season));
-    if (pool.length === 0) {
-        return null; // Aucun objet disponible dans cette zone et saison
-    }
-
-    // Sélectionner un objet aléatoire parmi ceux disponibles
     const randomIndex = Math.floor(Math.random() * pool.length);
     return pool[randomIndex];
 }
 
 // Ouvrir le modal de récolte
-openModalBtn.addEventListener("click", () => {
-    openModal(modal);
-});
+if (openModalBtn) {
+    openModalBtn.addEventListener("click", () => {
+        modal.showModal();
+    });
+}
 
 // Fermer le modal de récolte
-closeModalBtn.addEventListener("click", () => {
-    closeModal(modal);
-});
+if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", () => {
+        modal.close();
+    });
+}
 
 // Fermer le modal de résultat
-closeResultModalBtn.addEventListener("click", () => {
-    closeModal(resultModal);
-});
+if (closeResultModalBtn) {
+    closeResultModalBtn.addEventListener("click", () => {
+        resultModal.close();
+    });
+}
 
 // Soumettre le formulaire
-harvestForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+if (harvestForm) {
+    harvestForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    const zone = document.getElementById("zone").value;
-    const season = document.getElementById("season").value;
-    const type = document.getElementById("type").value;
+        const zone = document.getElementById("zone").value;
+        const season = document.getElementById("season").value;
+        const type = document.getElementById("type").value;
 
-    const harvestedItem = generateHarvest(type, zone, season);
+        const harvestedItem = generateHarvest(type, zone, season);
 
-    if (!harvestedItem) {
-        alert("Aucun objet disponible dans cette zone et saison pour le type sélectionné.");
-        return;
-    }
+        if (!harvestedItem) {
+            alert("Aucun objet disponible dans cette zone et saison pour le type sélectionné.");
+            return;
+        }
 
-    // Ajouter au localStorage
-    const entry = {
-        zone,
-        season,
-        type,
-        item: harvestedItem,
-        date: new Date().toLocaleString()
-    };
+        const entry = {
+            zone,
+            season,
+            type,
+            item: harvestedItem,
+            date: new Date().toLocaleString()
+        };
 
-    harvestHistory.push(entry);
-    localStorage.setItem("harvestHistory", JSON.stringify(harvestHistory));
+        harvestHistory.push(entry);
+        localStorage.setItem("harvestHistory", JSON.stringify(harvestHistory));
+        updateHistory();
+        showHarvestResult(harvestedItem);
+        modal.close();
+    });
+}
 
-    // Mettre à jour l'historique
-    updateHistory();
-
-    // Afficher le résultat dans le modal
-    showHarvestResult(harvestedItem);
-
-    // Fermer le modal de récolte
-    closeModal(modal);
-});
-
-// Fonction pour afficher le résultat de la récolte
+// Afficher le résultat de la récolte
 function showHarvestResult(item) {
-    const resultImg = document.getElementById("result-img");
-    const resultName = document.getElementById("result-name");
-    const resultDesc = document.getElementById("result-desc");
-    const resultRarity = document.getElementById("result-rarity");
+    document.getElementById("result-img").src = item.image;
+    document.getElementById("result-name").textContent = item.name;
+    document.getElementById("result-desc").textContent = item.desc;
+    document.getElementById("result-rarity").querySelector("span").textContent = item.rarity;
 
-    resultImg.src = item.image;
-    resultName.textContent = item.name;
-    resultDesc.textContent = item.desc;
-    resultRarity.querySelector("span").textContent = item.rarity;
-
-    openModal(resultModal);
+    resultModal.showModal();
 }
 
 // Mettre à jour l'historique
@@ -164,5 +139,4 @@ function updateHistory() {
     });
 }
 
-// Charger l'historique au démarrage
 updateHistory();
