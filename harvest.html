@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Meta tags for character encoding and viewport settings -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title of the webpage -->
+    <title>Infinite Eclipse - Récolte</title>
+    <!-- Link to the external CSS stylesheet -->
+    <link rel="stylesheet" href="assets/css/harvest.css">
+    <link rel="stylesheet" href="assets/css/musicplayer.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="website icon" href="profile.png" type="png">
+</head>
+<body>
+    <!-- Bouton pour ouvrir/fermer la sidebar -->
+    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
+
+    <!-- Sidebar masquée par défaut -->
+    <div class="sidebar hidden">
+        <img src="assets/images/infinite-eclipse-logo-c.png" alt="Logo">
+        <h2>Menu</h2>
+        <button class="btn" onclick="location.href='home-webside.html'">Accueil</button>
+        <button class="btn" onclick="location.href='updatelogs.html'">Update Logs</button>
+        <button class="btn" onclick="location.href='caracthermanager.html'">Gestionnaire de Personnages</button>
+        <button class="btn" onclick="location.href='index.html'">Gestion d'Inventaire</button>
+        <button class="btn" onclick="location.href='xpcalculator.html'">Calculateur d'XP</button>
+        <button class="btn" onclick="location.href='wallet.html'">Portefeuille</button>
+        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
+        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
+        <button class="btn" onclick="location.href='kitchen.html'">Cuisine</button>
+        <button class="btn" onclick="location.href='harvest.html'">Récolte</button>
+        <button class="btn" onclick="location.href='classments.html'">Classements</button>
+        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
+
+        <!-- Lecteur de musique -->
+        <div class="music-player">
+            <button id="muteButton" onclick="toggleMute()" aria-label="Activer ou désactiver le son">🔇</button>
+            <button id="playPauseButton" onclick="togglePlayPause()" aria-label="Lecture ou pause">▶️</button>
+            <select id="musicSelector" onchange="changeTrack()" aria-label="Sélectionner une piste">
+                <option value="sons/Whispers of the Wanderer.mp3">Whispers of the Wanderer</option>
+                <option value="sons/Whispers of the Ancient Plains.mp3">Whispers of the Ancient Plains</option>
+                <option value="sons/Waves of Fortune.mp3">Waves Of Fortune</option>
+            </select>
+            <div class="volume-control">
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()" aria-label="Régler le volume">
+            </div>
+        </div>
+    </div>
+
+    <h1>Récolte</h1>
+    <div id="openModalBtn" class="open-modal-btn">🌱 Lancer une récolte</div>
+
+    <!-- Section pour afficher l'historique des récoltes -->
+    <section id="harvest-history">
+        <h2>Historique des récoltes</h2>
+        <ul id="history-list"></ul>
+    </section>
+
+    <!-- Modal pour définir les paramètres de récolte -->
+    <div id="harvest-modal" class="hidden">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Définir les paramètres de récolte</h2>
+            <form id="harvest-form">
+                <label for="zone">Zone de récolte :</label>
+                <select id="zone" required>
+                    <option value="plaine-prélude">Plaine du Prélude</option>
+                    <option value="foret-damnés">Forêt des Damnés</option>
+                    <option value="falaises-baron">Falaises de Baron</option>
+                </select>
+
+                <label for="season">Saison :</label>
+                <select id="season" required>
+                    <option value="aube">Aube</option>
+                    <option value="printemps">Printemps</option>
+                    <option value="été">Été</option>
+                    <option value="pluie">Pluies</option>
+                    <option value="automne">Automne</option>
+                    <option value="hiver">Hiver</option>
+                    <option value="sommeil">Sommeils</option>
+                </select>
+
+                <label for="type">Type recherché :</label>
+                <select id="type" required>
+                    <option value="fruit">Fruit</option>
+                    <option value="légume">Légume</option>
+                    <option value="fleur">Fleur</option>
+                </select>
+
+                <button type="submit">Récolter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour afficher le résultat de la récolte -->
+    <div id="harvest-result-modal" class="hidden">
+        <div class="modal-content">
+            <img id="result-img" src="" alt="Image de l'objet récolté" class="result-img">
+            <div class="result-text">
+                <h2 id="result-name">Nom de l'objet</h2>
+                <p id="result-desc">Description de l'objet</p>
+                <p id="result-rarity">Rareté : <span></span></p>
+                <button class="confirm-btn" id="closeResultModalBtn">Fermer</button>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/MusicPlayer.js"></script>
+    <script src="assets/js/Sidebar.js"></script>
+    <script src="assets/js/harvest.js"></script>
+</body>
+</html>
