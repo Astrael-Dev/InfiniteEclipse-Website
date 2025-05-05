@@ -41,6 +41,7 @@
                 <option value="sons/Whispers of the Wanderer.mp3">Whispers of the Wanderer</option>
                 <option value="sons/Whispers of the Ancient Plains.mp3">Whispers of the Ancient Plains</option>
                 <option value="sons/Waves of Fortune.mp3">Waves Of Fortune</option>
+                <option value="sons/Gats.mp3">Gats - Berserk OST</option>
             </select>
             <div class="volume-control">
                 <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" oninput="changeVolume()" aria-label="Régler le volume">
@@ -49,76 +50,75 @@
     </div>
 
     <h1>Récolte</h1>
-    <div id="openModalBtn" class="open-modal-btn">🌱 Lancer une récolte</div>
+<div id="openModalBtn" class="open-modal-btn" onclick="openModal(document.getElementById('harvest-modal'))">🌱 Lancer une récolte</div>
 
-    <!-- Section pour afficher l'historique des récoltes -->
-    <section id="harvest-history">
-        <h2>Historique des récoltes</h2>
-        <ul id="history-list"></ul>
-    </section>
+<!-- Section pour afficher l'historique des récoltes -->
+<section id="harvest-history">
+    <h2>Historique des récoltes</h2>
+    <ul id="history-list"></ul>
+</section>
+<div id="eraseHistory" class="erase-history-btn" onclick="eraseHarvestHistory()">🗑️ Effacer l'historique</div>
 
-    <!-- Modal pour définir les paramètres de récolte -->
-    <dialog id="harvest-modal">
-        <form method="dialog" id="harvest-form" class="modal-content">
-          <button class="close" aria-label="Fermer">&times;</button>
-          <h2>Définir les paramètres de récolte</h2>
-      
-          <!-- Fields -->
-          <label for="zone">Zone de récolte :</label>
-          <select id="zone" required>
-            <option value="plaine-prélude">Plaine du Prélude</option>
-            <option value="foret-damnés">Forêt des Damnés</option>
-            <option value="falaises-baron">Falaises de Baron</option>
-          </select>
-      
-          <label for="season">Saison :</label>
-          <select id="season" required>
-            <option value="aube">Aube</option>
-            <option value="printemps">Printemps</option>
-            <option value="été">Été</option>
-            <option value="pluie">Pluies</option>
-            <option value="automne">Automne</option>
-            <option value="hiver">Hiver</option>
-            <option value="sommeil">Sommeils</option>
-          </select>
-      
-          <label for="type">Type recherché :</label>
-          <select id="type" required>
-            <option value="fruit">Fruit</option>
-            <option value="légume">Légume</option>
-            <option value="fleur">Fleur</option>
-          </select>
-      
-          <button type="submit">Récolter</button>
-        </form>
-      </dialog>
-      
-      <dialog id="harvest-result-modal">
-        <div class="modal-content">
-          <img id="result-img" src="" alt="Image de l'objet récolté" class="result-img">
-          <div class="result-text">
-            <h2 id="result-name">Nom de l'objet</h2>
-            <p id="result-desc">Description de l'objet</p>
-            <p id="result-rarity">Rareté : <span></span></p>
-            <button class="confirm-btn" id="closeResultModalBtn">Fermer</button>
-          </div>
-        </div>
-      </dialog>
+<!-- Modal pour définir les paramètres de récolte -->
+<dialog id="harvest-modal" class="hidden">
+  <form method="dialog" id="harvest-form" class="modal-content">
+      <h2>Définir les paramètres de récolte</h2>
+      <br>
+      <p>Choisissez la zone, la saison et le type d'objet que vous souhaitez récolter.</p>
+      <br>
 
-    <!-- Modal pour afficher le résultat de la récolte -->
-    <div id="harvest-result-modal" class="hidden">
-        <div class="modal-content">
-            <img id="result-img" src="" alt="Image de l'objet récolté" class="result-img">
-            <div class="result-text">
-                <h2 id="result-name">Nom de l'objet</h2>
-                <p id="result-desc">Description de l'objet</p>
-                <p id="result-rarity">Rareté : <span></span></p>
-                <button class="confirm-btn" id="closeResultModalBtn">Fermer</button>
-            </div>
-        </div>
-    </div>
-    <script src="assets/js/MusicPlayer.js"></script>
-    <script src="assets/js/Sidebar.js"></script>
-    <script src="assets/js/harvest.js"></script>
+      <!-- Fields -->
+      <label for="zone">Zone de récolte :</label>
+      <br>
+      <select id="zone" required>
+          <option value="plaine-prélude">Plaine du Prélude</option>
+          <option value="foret-damnés">Forêt des Damnés</option>
+          <option value="falaises-baron">Falaises de Baron</option>
+      </select>
+      <br>
+
+      <label for="season">Saison :</label>
+      <br>
+      <select id="season" required>
+          <option value="aube">Aube</option>
+          <option value="printemps">Printemps</option>
+          <option value="été">Été</option>
+          <option value="pluie">Pluies</option>
+          <option value="automne">Automne</option>
+          <option value="hiver">Hiver</option>
+          <option value="sommeil">Sommeils</option>
+      </select>
+      <br>
+
+      <label for="type">Type recherché :</label>
+      <br>
+      <select id="type" required>
+          <option value="fruit">Fruit</option>
+          <option value="légume">Légume</option>
+          <option value="fleur">Fleur</option>
+      </select>
+      <br>
+
+      <button type="submit">Récolter</button>
+      <br>  
+      <button type="button" class="cancel-btn" onclick="closeModal(document.getElementById('harvest-modal'))">Annuler</button>
+  </form>
+</dialog>
+
+<!-- Modal pour afficher le résultat de la récolte -->
+<dialog id="harvest-result-modal" class="hidden">
+  <div class="modal-content">
+      <img id="result-img" src="" alt="Image de l'objet récolté" class="result-img">
+      <div class="result-text">
+          <h2 id="result-name">Nom de l'objet</h2>
+          <p id="result-desc">Description de l'objet</p>
+          <p id="result-rarity">Rareté : <span></span></p>
+          <button class="confirm-btn" id="closeResultModalBtn" onclick="closeModal(document.getElementById('harvest-result-modal'))">Fermer</button>
+      </div>
+  </div>
+</dialog>
+<script src="assets/js/harvest.js"></script>
+<script src="assets/js/MusicPlayer.js"></script>
+<script src="assets/js/Sidebar.js"></script>
 </body>
 </html>

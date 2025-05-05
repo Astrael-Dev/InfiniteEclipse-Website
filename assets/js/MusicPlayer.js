@@ -3,6 +3,7 @@ const tracks = [
     "sons/Whispers of the Wanderer.mp3", // Track 1
     "sons/Whispers of the Ancient Plains.mp3", // Track 2
     "sons/Waves of Fortune.mp3", // Track 3
+    "sons/Gats.mp3" // Track 4
 ];
 let currentTrackIndex = 0;
 

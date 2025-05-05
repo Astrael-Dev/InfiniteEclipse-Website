@@ -1,197 +1,314 @@
 /* Importation des polices */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:ital,wght@1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
 
-/* Styles généraux */
+/* Styles globaux */
 body {
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 20px;
     background-color: #121212;
     color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-h1, h2 {
-    text-align: center;
-    color: #ff6347;
+h1 {
+    font-size: 2.5em;
     margin-bottom: 20px;
+    color: #ff6347;
+    text-align: center;
+    font-weight: 800;
+    animation: fadeIn 1s ease-in-out;
 }
 
-button, .btn {
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
+h2 {
+    font-size: 1.8em;
+    color: #ff6347;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
 }
 
 /* Bouton pour ouvrir le modal */
 .open-modal-btn {
-    display: inline-block;
+    display: block;
+    width: 90%;
+    max-width: 800px;
     padding: 15px 30px;
-    background: linear-gradient(135deg, #ff6347, #ff4500);
+    background-color: #ff6347;
     color: white;
+    border: none;
+    border-radius: 10px;
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
-    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin: 20px auto;
-    width: fit-content;
+    text-align: center;
 }
 
 .open-modal-btn:hover {
-    background: linear-gradient(135deg, #ff4500, #ff6347);
-    transform: scale(1.05);
+    background-color: #ff4500;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Section pour l'historique des récoltes */
-#harvest-history {
-    margin-top: 20px;
-    padding: 15px;
-    background: #1e1e1e;
+.erase-history-btn {
+    display: block;
+    width: 90%;
+    max-width: 800px;
+    padding: 15px 30px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 20px auto;
+    text-align: center;
 }
 
-#history-list {
+.erase-history-btn:hover {
+    background-color: #ff4500;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Historique des récoltes */
+#harvest-history {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 800px;
+}
+
+#harvest-history ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#history-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #333;
-    font-size: 16px;
-    color: #e0e0e0;
+#harvest-history li {
+    display: flex;
+    justify-content: space-between; /* Sépare le texte et l'image */
+    align-items: center; /* Aligne verticalement le contenu */
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: #fff;
+    font-weight: bold;
+    gap: 10px;
+}
+
+#harvest-history li img {
+    width: auto;
+    height: 128px;
+    object-fit: contain;
+}
+
+#harvest-history li.rarity-1 {
+    background: linear-gradient(45deg, #A9A9A9, #D3D3D3); /* Commun */
+}
+
+#harvest-history li.rarity-2 {
+    background: linear-gradient(45deg, #2AAA8A, #3CB371); /* Peu Commun */
+}
+
+#harvest-history li.rarity-3 {
+    background: linear-gradient(45deg, #4169E1, #5A9BEF); /* Rare */
+}
+
+#harvest-history li.rarity-4 {
+    background: linear-gradient(45deg, #BF40BF, #D870D8); /* Épique */
+}
+
+#harvest-history li.rarity-5 {
+    background: linear-gradient(45deg, #FFAA33, #FFD700); /* Légendaire */
+}
+
+#harvest-history li.rarity-6 {
+    background: linear-gradient(45deg, #DE3163, #FF69B4); /* Mythique */
+}
+
+#harvest-history li:hover {
+    transform: scale(1.05);
+}
+
+#harvest-modal.hidden, #harvest-result-modal.hidden {
+    display: none;
+}
+
+/* Modal de récolte */
+dialog {
+    top: 0%;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    position: fixed;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  dialog {
-    border: none;
-    border-radius: 15px;
-    padding: 0;
-    background: transparent;
-  }
+}
 
-#harvest-modal, #harvest-result-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
+#harvest-form {
+    opacity: 1;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement le contenu */
+    justify-content: center; /* Centre verticalement le contenu */
+    gap: 2px;
+    text-align: center; /* Centre le texte */
 }
 
 .modal-content {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement le contenu */
+    justify-content: center; /* Centre verticalement le contenu */
+    gap: 20px;
+    text-align: center; /* Centre le texte */
+}
+
+.modal-content h2 {
+    font-size: 1.8em;
+    color: #ff6347;
     text-align: center;
-    animation: slideIn 0.4s ease;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    color: #e0e0e0;
 }
 
 .modal-content label {
-    display: block;
-    margin: 10px 0 5px;
     font-weight: bold;
+    margin-bottom: 5px;
     color: #e0e0e0;
 }
 
-.modal-content select, .modal-content button {
+.modal-content select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #333;
-    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: white;
+    border-radius: 10px;
+    border: none;
     font-size: 16px;
-    background: #2c2c2c;
-    color: #e0e0e0;
-    transition: border-color 0.3s ease;
-}
-
-.modal-content select:focus, .modal-content button:focus {
-    border-color: #ff6347;
 }
 
 .modal-content button {
-    background: linear-gradient(135deg, #ff6347, #ff4500);
-    color: white;
+    padding: 10px 20px;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
     font-weight: bold;
+    color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .modal-content button:hover {
-    background: linear-gradient(135deg, #ff4500, #ff6347);
-    transform: scale(1.05);
+    background-color: #ff4500;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #e0e0e0;
+.cancel-btn {
+    background-color: #444444;
 }
 
-/* Modal pour le résultat de la récolte */
+.cancel-btn:hover {
+    background-color: #666666;
+}
+
+/* Modal de résultat */
+#harvest-result-modal {
+    top: 0%;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 #harvest-result-modal .modal-content {
-    font-family: 'Roboto', sans-serif;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.5s ease-in-out;
 }
 
-.result-img {
-    width: 150px;
-    height: 150px;
+#harvest-result-modal .result-img {
+    width: 120px;
+    height: 120px;
     object-fit: contain;
-    margin-bottom: 15px;
-    border: 2px solid #333;
-    border-radius: 10px;
+    border: 2px solid white;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.result-text h2 {
+#harvest-result-modal h2 {
     font-size: 24px;
     color: #ff6347;
-    margin-bottom: 10px;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.result-text p {
+#harvest-result-modal p {
     font-size: 16px;
-    margin-bottom: 10px;
     color: #e0e0e0;
 }
 
-.result-text #result-desc {
-    font-style: italic;
-}
-
-.confirm-btn {
+#harvest-result-modal .confirm-btn {
     padding: 10px 20px;
-    background: linear-gradient(135deg, #444444, #666666);
+    background-color: #ff6347;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.confirm-btn:hover {
-    background: linear-gradient(135deg, #666666, #444444);
-    transform: scale(1.05);
+#harvest-result-modal .confirm-btn:hover {
+    background-color: #ff4500;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Animations */
@@ -207,8 +324,10 @@ dialog::backdrop {
 @keyframes slideIn {
     from {
         transform: translateY(-20px);
+        opacity: 0;
     }
     to {
         transform: translateY(0);
+        opacity: 1;
     }
 }
