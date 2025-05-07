@@ -144,6 +144,14 @@ h2 {
     display: none;
 }
 
+#mining-zone-modal.hidden {
+    display: none;
+}
+
+#mining-game-modal.hidden {
+    display: none;
+}
+
 /* Modal de récolte */
 dialog {
     top: 0%;
@@ -309,6 +317,51 @@ dialog::backdrop {
     background-color: #ff4500;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles pour le mini-jeu de minage */
+.mining-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.mining-pickaxe {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50px;
+    left: -50px;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    z-index: 2;
+}
+
+.mining-pickaxe.active {
+    transform: rotate(90deg) translateY(-10px);
+}
+
+.mining-rock {
+    width: 150px;
+    height: 150px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#mining-progress {
+    font-size: 1.2em;
+    color: #e0e0e0;
+    margin-top: 10px;
+}
+
+.floating-message {
+    position: absolute;
+    color: yellow;
+    font-weight: bold;
+    z-index: 1000;
+    transition: all 1s ease;
+    pointer-events: none;
 }
 
 /* Animations */

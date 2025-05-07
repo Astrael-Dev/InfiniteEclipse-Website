@@ -49,8 +49,9 @@
         </div>
     </div>
 
-    <h1>Récolte</h1>
+    <h1>Ressources</h1>
 <div id="openModalBtn" class="open-modal-btn" onclick="openModal(document.getElementById('harvest-modal'))">🌱 Lancer une récolte</div>
+<div id="OpenMineBtn" class="open-modal-btn" onclick="openModal(document.getElementById('mining-zone-modal'))">⛏️ Lancer le minage</div>
 
 <!-- Section pour afficher l'historique des récoltes -->
 <section id="harvest-history">
@@ -71,9 +72,9 @@
       <label for="zone">Zone de récolte :</label>
       <br>
       <select id="zone" required>
-          <option value="plaine-prélude">Plaine du Prélude</option>
-          <option value="foret-damnés">Forêt des Damnés</option>
-          <option value="falaises-baron">Falaises de Baron</option>
+          <option value="plaine-prélude">Plaine du Prélude 🌱</option>
+          <option value="foret-damnés">Forêt des Damnés 🌱</option>
+          <option value="falaises-baron">Falaises du Baron 🌱</option>
       </select>
       <br>
 
@@ -103,6 +104,38 @@
       <br>  
       <button type="button" class="cancel-btn" onclick="closeModal(document.getElementById('harvest-modal'))">Annuler</button>
   </form>
+</dialog>
+
+<!-- Modal pour sélectionner la zone de minage -->
+<dialog id="mining-zone-modal" class="hidden">
+    <form method="dialog" id="mining-zone-form" class="modal-content">
+        <h2>Choisir une zone de minage</h2>
+        <br>
+        <label for="mining-zone">Zone de minage :</label>
+        <br>
+        <select id="mining-zone" required>
+            <option value="grotte-rivage">Grotte du Rivage ⛏️</option>
+        </select>
+        <br>
+        <button type="submit">Commencer le minage</button>
+        <br>
+        <button type="button" class="cancel-btn" onclick="closeModal(document.getElementById('mining-zone-modal'))">Annuler</button>
+    </form>
+  </dialog>
+  
+  <!-- Modal pour le mini-jeu de minage -->
+<dialog id="mining-game-modal" class="hidden">
+    <div class="modal-content">
+        <h2>Mini-jeu de Minage</h2>
+        <p>Cliquez sur la pierre pour la casser et révéler un minerai !</p>
+        <div class="mining-container">
+            <img id="mining-pickaxe" src="assets/images/pickaxe.png" alt="Pioche" class="mining-pickaxe">
+            <img id="mining-rock" src="assets/images/rock_normal.png" alt="Pierre" class="mining-rock">
+        </div>
+        <p id="mining-progress">Clics restants : <span id="clicks-left">4</span></p>
+        <audio id="mining-sound" src="sons/miningSoundEffect.mp3"></audio>
+        <button type="button" class="cancel-btn" onclick="closeModal(document.getElementById('mining-game-modal'))">Annuler</button>
+    </div>
 </dialog>
 
 <!-- Modal pour afficher le résultat de la récolte -->
