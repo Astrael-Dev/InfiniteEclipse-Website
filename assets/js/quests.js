@@ -475,18 +475,20 @@ function showQuestDetails(id) {
 
     // Récompenses de l'étape actuelle
     const rewardsList = document.getElementById("quest-rewards");
-    rewardsList.innerHTML = ""; // Clear existing content
-    currentStep.rewards.forEach(reward => {
-        const li = document.createElement("li");
-        if (reward.type === "xp") {
-            li.innerHTML = `<span style="color: royalblue;">XP : ${reward.value} 🌟</span>`;
-        } else if (reward.type === "money") {
-            li.innerHTML = `<span style="color: gold;">Argent : ${reward.value} 💎</span>`;
-        } else if (reward.type === "item") {
-            li.innerHTML = `<span style="color: green;">Objet : ${reward.value} 🗡️</span>`;
-        }
-        rewardsList.appendChild(li);
-    });
+rewardsList.innerHTML = ""; // Clear existing content
+currentStep.rewards.forEach(reward => {
+    const li = document.createElement("li");
+    if (reward.type === "xp") {
+        li.innerHTML = `<span style="color: royalblue;">XP : ${reward.value} 🌟</span>`;
+    } else if (reward.type === "money") {
+        li.innerHTML = `<span style="color: gold;">Argent : ${reward.value} 💎</span>`;
+    } else if (reward.type === "item") {
+        li.innerHTML = `<span style="color: green;">Objet : ${reward.value} 🗡️</span>`;
+    } else if (reward.type === "eclipseShards") {
+        li.innerHTML = `<span style="color: purple;">Éclats du Crépuscule : ${reward.value} 🟣</span>`;
+    }
+    rewardsList.appendChild(li);
+});
 
     // Description spécifique à l'étape actuelle
     document.getElementById("quest-description").textContent = currentStep.description;
@@ -524,9 +526,10 @@ function finishStep(id) {
     } else {
         quest.status = "completed";
 
-        // Calculer la somme totale des récompenses en argent pour toutes les étapes
+        // Calculer les récompenses totales
         let totalMoney = 0;
         let totalXP = 0;
+        let totalEclipseShards = 0;
 
         quest.steps.forEach(step => {
             step.rewards.forEach(reward => {
@@ -534,15 +537,16 @@ function finishStep(id) {
                     totalMoney += reward.value;
                 } else if (reward.type === "xp") {
                     totalXP += reward.value;
+                } else if (reward.type === "eclipseShards") {
+                    totalEclipseShards += reward.value;
                 }
             });
         });
 
-        // Ajouter l'argent total au portefeuille
+        // Ajouter les récompenses au joueur
         addToWallet(totalMoney, quest.name);
-
-        // Ajouter l'XP total au calculateur d'XP
         addToXP(totalXP);
+        addEclipseShards(totalEclipseShards);
     }
 
     saveQuestsToLocalStorage(); // Sauvegarde l'état des quêtes
@@ -602,6 +606,15 @@ function addToXP(amount) {
     localStorage.setItem("currentLevel", currentLevel);
 
     console.log(`XP ajouté : ${amount}. Niveau actuel : ${currentLevel}, XP actuel : ${currentXP}/${xpForNextLevel}`);
+}
+
+function addEclipseShards(amount) {
+    const currentShards = parseInt(localStorage.getItem("eclipseShards")) || 0;
+    const newShards = currentShards + amount;
+    localStorage.setItem("eclipseShards", newShards);
+
+    // Mettre à jour l'affichage
+    loadCurrencies();
 }
 
 function getXpForLevel(level) {

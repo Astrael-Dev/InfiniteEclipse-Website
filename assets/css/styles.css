@@ -417,7 +417,26 @@ button:hover {
     text-align: center;
 }
 
-.chest-option img {
+.chest-option button {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.chest-option button img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.chest-image {
     width: 150px;
     height: 150px;
     border: 2px solid #fff;
@@ -444,6 +463,40 @@ button:hover {
     border-radius: 5px;
 }
 
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .obtained-loot {
     display: none;
     position: fixed;
@@ -463,24 +516,28 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    animation: rotate 5s infinite;
-    color: #fff; /* Text color set to white */
+    color: #fff;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.obtained-loot-content.slide-out {
+    animation: slideOut 0.5s ease-in-out;
 }
 
 .obtained-loot-content img {
     width: auto;
     height: 512px;
-    margin: 40px auto; /* Increased margin and centered the image */
-    display: block; /* Ensure the image is centered */
+    margin: 40px auto;
+    display: block;
+    animation: float 3s infinite ease-in-out; /* Ajout du mouvement constant */
 }
 
 .obtained-loot-name {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #fff; /* Text color set to white */
+    color: #fff;
 }
-
 /* Bouton pour ouvrir/fermer la sidebar */
 #sidebarToggle {
     width: 40px;
@@ -530,14 +587,3 @@ button:hover {
 }
 
 
-@keyframes rotate {
-    0% {
-        transform: rotateY(0deg);
-    }
-    50% {
-        transform: rotateY(180deg);
-    }
-    100% {
-        transform: rotateY(360deg);
-    }
-}

@@ -6,9 +6,19 @@
     <title>Cuisine</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/kitchen.css">
+    <link rel="stylesheet" href="assets/css/currencyDisplay.css">
     <link rel="website icon" href="profile.png" type="image/png">
 </head>
 <body>
+    <div id="currencyDisplay" class="currency-display">
+        <div class="currency-item">
+            <span id="walletAmountDisplay">0 💎</span>
+        </div>
+        <div class="currency-item">
+            <img src="assets/images/eclipse_shard.png" alt="Éclats du Crépuscule" class="currency-icon">
+            <span id="eclipseShardAmount">0</span>
+        </div>
+    </div>
    <!-- Button to open/close the sidebar -->
    <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
    <div class="sidebar hidden">
@@ -23,7 +33,7 @@
        <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
        <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
          <button class="btn" onclick="location.href='kitchen.html'">Cuisine</button>
-         <button class="btn" onclick="location.href='harvest.html'">Récolte</button>
+         <button class="btn" onclick="location.href='harvest.html'">Ressources</button>
        <button class="btn" onclick="location.href='classments.html'">Classements</button>
        <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
        <div class="volume-control">
@@ -201,6 +211,7 @@
         </div>
     </div>
     <!-- Scripts -->
+    <script src="assets/js/currencyDisplay.js"></script>
     <script src="assets/js/Sidebar.js"></script>
     <script src="assets/js/Kitchen.js"></script>
 </body>

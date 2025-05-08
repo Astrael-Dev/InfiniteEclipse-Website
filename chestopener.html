@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/currencyDisplay.css">
     <link rel="stylesheet" href="assets/css/musicplayer.css">
     <link rel="website icon" href="profile.png" type="png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ouverture de Coffres</title>
 </head>
 <body>
+    <div id="currencyDisplay" class="currency-display">
+        <div class="currency-item">
+            <span id="walletAmountDisplay">0 💎</span>
+        </div>
+        <div class="currency-item">
+            <img src="assets/images/eclipse_shard.png" alt="Éclats du Crépuscule" class="currency-icon">
+            <span id="eclipseShardAmount">0</span>
+        </div>
+    </div>
     <!-- Button to open/close the sidebar -->
     <button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Ouvrir ou fermer la barre latérale">☰</button>
     <div class="sidebar hidden">
@@ -23,7 +33,7 @@
         <button class="btn" onclick="location.href='chestopener.html'">Ouverture de Coffres</button>
         <button class="btn" onclick="location.href='quests.html'">Quêtes</button>
         <button class="btn" onclick="location.href='kitchen.html'">Cuisine</button>
-        <button class="btn" onclick="location.href='harvest.html'">Récolte</button>
+        <button class="btn" onclick="location.href='harvest.html'">Ressources</button>
         <button class="btn" onclick="location.href='classments.html'">Classements</button>
         <button class="btn" onclick="location.href='credentials.html'">Contributeurs</button>
     </div>
@@ -32,25 +42,28 @@
         <div class="form-group">
             <div class="chest-option">
                 <h3>Coffre Commun</h3>
-                <img src="coffres/coffre-commun.png" alt="Coffre Commun">
+                <img src="coffres/coffre-commun.png" alt="Coffre Commun" class="chest-image">
                 <button class="btn" onclick="openChest('common')">Ouvrir</button>
+                <button class="btn" onclick="buyChest('Coffre Commun', 20)">Acheter pour 20 <img src="assets/images/eclipse_shard.png" alt="Éclats" class="currency-icon"></button>
             </div>
             <div class="chest-option">
                 <h3>Coffre Rare</h3>
-                <img src="coffres/coffre-rare.png" alt="Coffre Rare">
+                <img src="coffres/coffre-rare.png" alt="Coffre Rare" class="chest-image">
                 <button class="btn" onclick="openChest('rare')">Ouvrir</button>
+                <button class="btn" onclick="buyChest('Coffre Rare', 40)">Acheter pour 40 <img src="assets/images/eclipse_shard.png" alt="Éclats" class="currency-icon"></button>
             </div>
             <div class="chest-option">
                 <h3>Coffre Épique</h3>
-                <img src="coffres/coffre-epique.png" alt="Coffre Épique">
+                <img src="coffres/coffre-epique.png" alt="Coffre Épique" class="chest-image">
                 <button class="btn" onclick="openChest('epic')">Ouvrir</button>
+                <button class="btn" onclick="buyChest('Coffre Épique', 80)">Acheter pour 80 <img src="assets/images/eclipse_shard.png" alt="Éclats" class="currency-icon"></button>
             </div>
             <div class="chest-option">
                 <h3>Coffre Légendaire</h3>
-                <img src="coffres/coffre-légendaire.png" alt="Coffre Légendaire">
+                <img src="coffres/coffre-légendaire.png" alt="Coffre Légendaire" class="chest-image">
                 <button class="btn" onclick="openChest('legendary')">Ouvrir</button>
+                <button class="btn" onclick="buyChest('Coffre Légendaire', 120)">Acheter pour 120 <img src="assets/images/eclipse_shard.png" alt="Éclats" class="currency-icon"></button>
             </div>
-        </div>
         <div id="lootResult"></div>
         <h2>Historique des obtentions</h2>
         <div id="lootHistory"></div>
@@ -79,7 +92,7 @@
             <div id="obtainedLootRarity" class="rarity"></div>
         </div>
     </div>
-
+    <script src="assets/js/currencyDisplay.js"></script>
     <script src="assets/js/chestopener.js"></script>
     <script src="assets/js/Sidebar.js"></script>
     <script src="assets/js/musicplayer.js"></script>

@@ -188,8 +188,8 @@ function displayHarvestResult(item) {
     resultDesc.textContent = item.desc;
     resultRarity.textContent = item.rarity;
 
-    // Utiliser getRandomEnduranceLoss pour calculer l'endurance perdue
-    const enduranceLost = getRandomEnduranceLoss();
+    // Ajouter l'endurance totale perdue
+    const enduranceLost = getHarvestEnduranceLoss();
     const enduranceInfo = document.createElement("p");
     enduranceInfo.textContent = `Endurance totale perdue : ${enduranceLost}`;
     enduranceInfo.style.color = "yellow";
@@ -200,9 +200,17 @@ function displayHarvestResult(item) {
     // Ajouter l'objet à l'inventaire
     addToInventory(item);
 
+    // Jouer le son
+    const resultSound = document.getElementById("result-sound");
+    if (resultSound) {
+        resultSound.currentTime = 0; // Réinitialiser le son
+        resultSound.play();
+    }
+
     // Ouvrir le modal de résultat
     openModal(resultModal);
 }
+
 // Fonction pour obtenir un minerai aléatoire
 function getRandomMineral() {
     // Vérifier si la zone sélectionnée contient des minerais
@@ -348,14 +356,21 @@ function displayMiningResult(item) {
     enduranceInfo.classList.add("endurance-info");
     resultText.appendChild(enduranceInfo);
 
+    // Ajouter l'objet à l'inventaire
+    addToInventory(item);
+
+    // Jouer le son
+    const resultSound = document.getElementById("result-sound");
+    if (resultSound) {
+        resultSound.currentTime = 0; // Réinitialiser le son
+        resultSound.play();
+    }
+
     // Fermer le modal du mini-jeu
     closeModal(miningGameModal);
 
     // Ouvrir le modal de résultat
     openModal(resultModal);
-
-    // Ajouter l'objet à l'inventaire
-    addToInventory(item);
 
     // Réinitialiser l'endurance totale perdue
     totalEnduranceLost = 0;
@@ -484,44 +499,5 @@ function addToInventory(item) {
     alert(`${item.name} a été ajouté à votre inventaire.`);
 }
 
-// Mise à jour de la fonction displayHarvestResult
-function displayHarvestResult(item) {
-    // Fermer le modal de récolte
-    closeModal(document.getElementById("harvest-modal"));
-
-    // Mettre à jour les informations du résultat
-    const resultImg = document.getElementById("result-img");
-    const resultName = document.getElementById("result-name");
-    const resultDesc = document.getElementById("result-desc");
-    const resultRarity = document.getElementById("result-rarity").querySelector("span");
-    const resultText = document.querySelector(".result-text");
-
-    // Réinitialiser les anciennes informations d'endurance
-    const oldEnduranceInfo = resultText.querySelector("p.endurance-info");
-    if (oldEnduranceInfo) {
-        resultText.removeChild(oldEnduranceInfo);
-    }
-
-    resultImg.src = item.image;
-    resultImg.alt = item.name;
-    resultName.textContent = item.name;
-    resultDesc.textContent = item.desc;
-    resultRarity.textContent = item.rarity;
-
-    // Ajouter l'endurance totale perdue
-    const enduranceLost = getHarvestEnduranceLoss();
-    const enduranceInfo = document.createElement("p");
-    enduranceInfo.textContent = `Endurance totale perdue : ${enduranceLost}`;
-    enduranceInfo.style.color = "yellow";
-    enduranceInfo.style.fontWeight = "bold";
-    enduranceInfo.classList.add("endurance-info");
-    resultText.appendChild(enduranceInfo);
-
-    // Ajouter l'objet à l'inventaire
-    addToInventory(item);
-
-    // Ouvrir le modal de résultat
-    openModal(resultModal);
-}
 // Charger l'historique au démarrage
 updateHistory();
