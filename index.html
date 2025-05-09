@@ -148,45 +148,6 @@
         <div id="inventoryList"></div>
     </div>
 
-    <!-- Account Creation Modal -->
-    <div id="accountModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAccountModal()">&times;</span>
-            <h2>Créer un compte</h2>
-            <div class="form-group">
-                <label for="username">Nom d'utilisateur:</label>
-                <input type="text" id="username">
-            </div>
-            <div class="form-group">
-                <label for="password">Mot de passe:</label>
-                <input type="password" id="password">
-                <input type="checkbox" onclick="togglePasswordVisibility()"> Afficher le mot de passe
-            </div>
-            <div class="form-group">
-                <label for="profileImageInput">Image de profil:</label>
-                <input type="file" id="profileImageInput" accept="image/*">
-            </div>
-            <button class="btn" onclick="createAccount()">Créer</button>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>Se connecter</h2>
-            <div class="form-group">
-                <label for="loginUsername">Nom d'utilisateur:</label>
-                <input type="text" id="loginUsername">
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Mot de passe:</label>
-                <input type="password" id="loginPassword">
-                <input type="checkbox" onclick="toggleLoginPasswordVisibility()"> Afficher le mot de passe
-            </div>
-            <button class="btn" onclick="login()">Se connecter</button>
-        </div>
-    </div>
 
     <!-- Create Inventory Modal -->
     <div id="createInventoryModal" class="modal">
