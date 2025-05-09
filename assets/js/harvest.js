@@ -105,6 +105,7 @@ function generateHarvest(type, zone, season) {
             { id: "l0006", name: "Ail", desc: "Un ail odorant et savoureux.", rarity: "Rare", image: "ingrédients/légumes/ail.png", seasons: ["printemps", "été"] },
             { id: "l0007", name: "Oignon", desc: "Un oignon fort et piquant.", rarity: "Commun", image: "ingrédients/légumes/oignon.png", seasons: ["aube", "printemps", "été", "pluie", "automne"] },
             { id: "l0008", name: "Poivron Cloche", desc: "Un poivron croquant et coloré.", rarity: "Peu commun", image: "ingrédients/légumes/poivron_cloche.png", seasons: ["printemps", "été", "pluie", "automne"] },
+            { id: "l0009", name: "Pomme de Terre", desc: "Une pomme de terre nourrissante.", rarity: "Commun", image: "ingrédients/légumes/pomme_de_terre.png", seasons: ["printemps", "été", "automne"] },
         ],
         fleur: [
             { id: "x0001", name: "Cécilia", desc: "Une fleur à l'arôme vanillé et délicate.", rarity: "Commun", image: "fleurs/Cecilia.png", seasons: ["printemps"] },
@@ -116,7 +117,7 @@ function generateHarvest(type, zone, season) {
             { id: "x0007", name: "Fleur de Soie", desc: "La Fleur de Soie est une plante remarquable, dont les pétales délicats produisent une fibre semblable au coton.", rarity: "Rare", image: "fleurs/Fleur-Soie.png", seasons: ["aube", "printemps", "été", "automne"] },
             { id: "x0008", name: "Rose des Nuances", desc: "La Rose des nuances est une fleur remarquable qui prospère sur les falaises tempérées, là où les vents et l'air salin façonnent son environnement.", rarity: "Peu commun", image: "fleurs/Rose-Nuances.png", seasons: ["aube", "printemps", "été", "automne"] },
             { id: "x0009", name: "Trompettes Violettes", desc: "Les Trompettes Violettes sont des fleurs délicates et parfumées qui poussent dans les zones tempérées.", rarity: "Peu commun", image: "fleurs/Trompettes-violettes.png", seasons: ["aube", "printemps", "été", "pluie", "automne", "sommeil"] },
-        ]
+        ],
     };
 
     if (!zones[zone]) return null;

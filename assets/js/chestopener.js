@@ -342,7 +342,7 @@ function displayLoot(item) {
     // Masquer la section après quelques secondes (optionnel)
     setTimeout(() => {
         obtainedLoot.style.display = 'none';
-    }, 5000); // 5 secondes
+    }, 8000); // 8 secondes
 }
 
 // Retourne la classe CSS pour la rareté

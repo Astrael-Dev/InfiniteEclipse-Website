@@ -83,7 +83,7 @@ const recipes = [
         ingredients: ["poulet", "carotte", "pomme de terre", "lait de brebis"],
         image: "plats/ragout-poulet.png",
         description: "Un délicieux ragoût de poulet qui réchauffe le cœur.",
-        effects: { pv: 300, defense: 100, froid:"Résistance"},
+        effects: { pv: 300, defense: 100, froid:"Résistance", endurance: 300 },
         cookingTime: 7 * 60, // Temps en secondes (7 minutes)
     },
     {
@@ -91,7 +91,7 @@ const recipes = [
         ingredients: ["tomate", "carotte", "steak", "eau"],
         image: "plats/bouillon-des-champs.png",
         description: "Un bouillon réconfortant aux saveurs des champs.",
-        effects: { pv: 70, pm: 50, defense: 50, "froid":true},
+        effects: { pv: 70, pm: 50, defense: 50, "froid":"Résistance", endurance: 50},
         cookingTime: 3 * 60, // Temps en secondes (3 minutes)
     },
     {
@@ -99,7 +99,7 @@ const recipes = [
         ingredients: ["pain", "lait de brebis", "oeuf", "creme fraiche"],
         image: "plats/brioche-royale.png",
         description: "Une brioche moelleuse et sucrée, contenant beaucoup de sucres naturels.",
-        effects: { pv: 300,  defense: 50, attaqueMagique: 100, defenseMagique: 100},
+        effects: { pv: 300,  defense: 50, attaqueMagique: 100, defenseMagique: 100, endurance: 500},
         cookingTime: 10 * 60, // Temps en secondes (10 minutes)
     },
     {
@@ -107,7 +107,7 @@ const recipes = [
         ingredients: ["café", "sucre", "sucre", "lait de brebis"],
         image: "plats/café-vanille.png",
         description: "Un café doux et crémeux, parfait pour commencer la journée.",
-        effects: { pv: 50, pm: 100, agilite: 30},
+        effects: { pv: 50, pm: 100, agilite: 30, endurance: 300},
         cookingTime: 1 * 60, // Temps en secondes (1 minute)
     },
     {
@@ -115,7 +115,7 @@ const recipes = [
         ingredients: ["sucre", "sucre", "beurre", "sel"],
         image: "plats/caramel-sale.png",
         description: "Un caramel salé irrésistible, parfait pour les gourmands.",
-        effects: { pv: 20, pm: 30, defenseMagique: 30}, 
+        effects: { pv: 20, pm: 30, defenseMagique: 30, endurance: 50}, 
         cookingTime: 2 * 60, // Temps en secondes (2 minutes)
     },
     {
@@ -123,7 +123,7 @@ const recipes = [
         ingredients: ["pain", "ail", "huile olive", "beurre"],
         image: "plats/crousti-ail.png",
         description: "Des tranches de pain généreuses et croustillantes à l'ail.",
-        effects: { pv: 100, defense: 100, defenseMagique: 100 },
+        effects: { pv: 100, defense: 100, defenseMagique: 100, endurance: 70 },
         cookingTime: 3 * 60, // Temps en secondes (3 minutes)
     },
     {
@@ -131,7 +131,7 @@ const recipes = [
         ingredients: ["chocolat", "lait de brebis", "sucre", "oeuf"],
         image: "plats/flanc-cremeux-chocolat.png",
         description: "Un dessert crémeux au chocolat, qui est un plat de tradition dans le Nord.",
-        effects: { pv: 100, pm: 50, defenseMagique: 50 },
+        effects: { pv: 100, pm: 50, defenseMagique: 50, endurance: 80 },
         cookingTime: 5 * 60, // Temps en secondes (5 minutes)
     },
     {
@@ -139,7 +139,7 @@ const recipes = [
         ingredients: ["gigot", "riz", "poivre", "curry"],
         image: "plats/gigot-geant-curry.png",
         description: "Un gigot géant mariné au curry, servi avec du riz, souvent mangé par les soldats après de lourds entraînements.",
-        effects: { pv: 500, attaque:100, defense: 200, agilite: 50 },
+        effects: { pv: 500, attaque:100, defense: 200, agilite: 50, endurance: 700 },
         cookingTime: 15 * 60, // Temps en secondes (15 minutes)
     },
     {
@@ -155,7 +155,7 @@ const recipes = [
         ingredients: ["champignon blanc", "champignon hashak", "pomme de terre", "beurre"],
         image: "plats/myriade-champignons.png",
         description: "Un plat savoureux à base de champignons variés, souvent servi dans les tavernes.",
-        effects: { pv: 150, defense: 50, defenseMagique: 50 },
+        effects: { pv: 150, defense: 50, defenseMagique: 50, endurance: 50 },
         cookingTime: 4 * 60, // Temps en secondes (4 minutes)
     },
     {
@@ -163,7 +163,7 @@ const recipes = [
         ingredients: ["blé", "eau", "sel", "beurre"],
         image: "plats/pain.png",
         description: "Un pain moelleux, parfait pour accompagner vos plats.",
-        effects: { pv: 50},
+        effects: { pv: 50, endurance: 30 },
         cookingTime: 3 * 60, // Temps en secondes (3 minutes)
     },
     {
@@ -171,7 +171,7 @@ const recipes = [
         ingredients: ["pomme de terre", "beurre", "creme fraiche", "sel"],
         image: "plats/patatafestin.png",
         description: "Plein de pommes de terre, sous toutes leurs formes, cuites à la perfection, accompagné d'une sauce à la crème.",
-        effects: { pv: 400, attaque: 150, agilite: 50 },
+        effects: { pv: 400, attaque: 150, agilite: 50, endurance: 500 },
         cookingTime: 7 * 60, // Temps en secondes (7 minutes)
     },
     {
@@ -179,7 +179,7 @@ const recipes = [
         ingredients: ["pomme de terre", "poulet", "saucisse", "beurre"],
         image: "plats/pomme-de-terre-sautees.png",
         description: "Des pommes de terre sautées à la perfection, accompagnées de poulet et de saucisse.",
-        effects: { pv: 200, attaque: 100, defense: 50 },
+        effects: { pv: 200, attaque: 100, defense: 50, endurance: 500 },
         cookingTime: 6 * 60, // Temps en secondes (6 minutes)
     },
     {
@@ -187,7 +187,7 @@ const recipes = [
         ingredients: ["pomme", "pomme", "miel", "cannelle"],
         image: "plats/pomme-royale-ruche.png",
         description: "Deux gigantesques pommes sucrées et juteuses, remplies de miel et soupoudrées de cannelle.",
-        effects: { pv: 500, pm: 100, attaqueMagique: 100, defenseMagique: 200,},
+        effects: { pv: 500, pm: 100, attaqueMagique: 100, defenseMagique: 200, endurance: 300 },
         cookingTime: 5 * 60, // Temps en secondes (5 minutes)
     },
     {
@@ -195,7 +195,7 @@ const recipes = [
         ingredients: ["steak", "carotte", "pomme de terre", "eau"],
         image: "plats/ragout-boeuf.png",
         description: "Un ragoût de boeuf savoureux, mijoté lentement.",
-        effects: { pv: 100, defense: 50 },
+        effects: { pv: 100, defense: 50, endurance: 100 },
         cookingTime: 5 * 60, // Temps en secondes (5 minutes)
     },
     {
@@ -203,7 +203,7 @@ const recipes = [
         ingredients: ["tomate", "oignon", "ail", "huile olive"],
         image: "plats/salade-balsamee.png",
         description: "Une salade fraîche et légère, parfaite pour l'été.",
-        effects: { pv: 50, attaque:50, defense: 30, agilite: 50, "chaud":true},
+        effects: { pv: 50, attaque:50, defense: 30, agilite: 50, "chaud":"Résistance", endurance: 50 },
         cookingTime: 0 * 60, // Temps en secondes (Aucune cuisson)
     },
     {
@@ -211,7 +211,7 @@ const recipes = [
         ingredients: ["carotte", "oignon", "tomate", "eau"],
         image: "plats/soupe-legumes-herbes.png",
         description: "Une soupe de légumes réconfortante, parfaite pour les jours froids.",
-        effects: { pv: 50, pm: 30, defense: 30, "froid":true},
+        effects: { pv: 50, pm: 30, defense: 30, "froid":"Résistance", endurance: 50 },
         cookingTime: 4 * 60, // Temps en secondes (4 minutes)
     },
     {
@@ -219,7 +219,7 @@ const recipes = [
         ingredients: ["steak", "poivre", "sel", "creme fraiche"],
         image: "plats/steak-grille.png",
         description: "Un steak grillé à la perfection, assaisonné de poivre et de sel. Une sauce à la crème l'accompagne.",
-        effects: { pv: 200, attaque: 100, defense: 50 },
+        effects: { pv: 200, attaque: 100, defense: 50, endurance: 100 },
         cookingTime: 8 * 60, // Temps en secondes (8 minutes)
     },
     {
@@ -227,7 +227,7 @@ const recipes = [
         ingredients: ["steak", "oeuf", "poivre", "sel"],
         image: "plats/tartare-luxueux.png",
         description: "Un tartare de boeuf de luxe, assaisonné avec soin.",
-        effects: { pv: 300, attaque: 100, defenseMagique: 80 },
+        effects: { pv: 300, attaque: 100, defenseMagique: 80, endurance: 100 },
         cookingTime: 0 * 60, // Temps en secondes (Aucune cuisson)
     },
     {
@@ -235,7 +235,7 @@ const recipes = [
         ingredients: ["chocolat", "café", "lait de brebis", "sucre"],
         image: "plats/volcan-cacao.png",
         description: "Un volcan de chocolat chaud, avec un coeur fondant au chocolat. Une vraie protection contre le froid.",
-        effects: { pv: 350, defense: 100, defenseMagique: 100, "froid":true},
+        effects: { pv: 350, defense: 100, defenseMagique: 100, "froid":"Résistance", endurance: 100 },
         cookingTime: 3 * 60, // Temps en secondes (3 minutes)
     },
     {
@@ -243,7 +243,7 @@ const recipes = [
         ingredients: ["porc", "poivre", "carotte", "beurre"],
         image: "plats/cotes-porc-poivre.png",
         description: "Des côtes de porc juteuses, accompagnées d'une sauce au poivre et servies avec des carottes.",
-        effects: { pv: 400, attaque: 170, defense: 50, agilite: 50 },
+        effects: { pv: 400, attaque: 170, defense: 50, agilite: 50, endurance: 100 },
         cookingTime: 10 * 60, // Temps en secondes (10 minutes)
     },
     {
@@ -251,7 +251,7 @@ const recipes = [
         ingredients: ["saumon", "citron", "sel", "beurre"],
         image: "plats/saumon-grille.png",
         description: "Un saumon grillé à la perfection, assaisonné de citron et de sel.",
-        effects: { pv: 700, attaque: 250, defense: 150, defenseMagique: 100 },
+        effects: { pv: 700, attaque: 250, defense: 150, defenseMagique: 100, endurance: 300 },
         cookingTime: 12 * 60, // Temps en secondes (12 minutes)
     },
     {
@@ -259,7 +259,7 @@ const recipes = [
         ingredients: ["poivron cloche", "steak", "creme fraiche", "tomate"],
         image: "plats/triple-poivrons-farcis.png",
         description: "Trois poivrons farcis de viande, de crème et de tomates.",
-        effects: { pv: 500, defense: 300, defenseMagique: 150, froid: "Résistance"},
+        effects: { pv: 500, defense: 300, defenseMagique: 150, froid: "Résistance", endurance: 300 },
         cookingTime: 8 * 60, // Temps en secondes (8 minutes)
     },
     {
@@ -267,7 +267,7 @@ const recipes = [
         ingredients: ["champignon blanc", "champignon blanc", "creme fraiche", "beurre"],
         image: "plats/soupe-champignons.png",
         description: "Une soupe crémeuse aux champignons, parfaite pour les jours froids.",
-        effects: { pv: 200, attaqueMagique: 100, defenseMagique: 100, froid: "Résistance"},
+        effects: { pv: 200, attaqueMagique: 100, defenseMagique: 100, froid: "Résistance", endurance: 100 },
         cookingTime: 5 * 60, // Temps en secondes (5 minutes)
     },
     {
@@ -275,7 +275,7 @@ const recipes = [
         ingredients: ["citron", "sucre", "beurre", "oeuf"],
         image: "plats/tarte-citron-meringuee.png",
         description: "Une tarte au citron meringuée, sucrée et acidulée à la fois.",
-        effects: { pv: 700, attaqueMagique: 310, defenseMagique: 150 },
+        effects: { pv: 700, attaqueMagique: 310, defenseMagique: 150, endurance: 300 },
         cookingTime: 6 * 60, // Temps en secondes (6 minutes)
     },
     {
@@ -284,7 +284,7 @@ const recipes = [
         ingredients: ["pain", "champignon blanc", "beurre", "emmental"],
         image: "plats/pizza-champignons.png",
         description: "Une pizza croustillante garnie de champignons et de fromage.",
-        effects: { pv: 300, defense: 100, defenseMagique: 100, agilite: 200},
+        effects: { pv: 300, defense: 100, defenseMagique: 100, agilite: 200, endurance: 300 },
         cookingTime: 8 * 60, // Temps en secondes (8 minutes)
     },
 ];

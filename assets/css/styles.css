@@ -577,13 +577,15 @@ button:hover {
     display: flex;
     flex-direction: column; /* Aligne les éléments verticalement */
     align-items: center; /* Centre les éléments horizontalement */
+    transform: translateX(0);
     animation: slideInLeft 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar.hidden {
-    animation: slideOut 0.5s ease-in-out;
-    transform: translateX(-100%); /* Masquée */
+    transform: translateX(-100%); /* Cache la sidebar en la déplaçant vers la gauche */
     transition: transform 0.3s ease-in-out;
+    animation: slideOut 0.5s ease-in-out;
 }
 
 

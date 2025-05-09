@@ -26,3 +26,84 @@
     width: 20px;
     height: 20px;
 }
+    
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ff6347;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Styles pour le modal */
+#accountModal.hidden {
+    display: none;
+}
+
+#accountModal {
+    top: 0%;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    position: fixed;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.account-modal-content {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.account-modal-content h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.account-modal-content label {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.account-modal-content input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #2c2c2c;
+    color: #fff;
+}
+
+.account-modal-content .btn {
+    width: 100%;
+    margin: 10px 0;
+}

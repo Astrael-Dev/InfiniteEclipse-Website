@@ -1,0 +1,46 @@
+/* Bouton pour ouvrir/fermer la sidebar */
+#sidebarToggle {
+    width: 40px;
+    height: fit-content;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #ff6347;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1002; /* Assurez-vous qu'il est au-dessus de la sidebar */
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#sidebarToggle:hover {
+    background-color: #ff4500;
+    transform: scale(1.1);
+}
+
+/* Transition pour la sidebar */
+.sidebar {
+    width: 350px; /* Assurez-vous que la largeur de la sidebar est suffisante */
+    z-index: 1001; /* Assurez-vous qu'elle est au-dessus du contenu principal */
+    background: #1e1e1e;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    animation: slideInLeft 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.hidden {
+    animation: slideOut 0.5s ease-in-out;
+}

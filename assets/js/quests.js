@@ -24,7 +24,8 @@ const quests = [
                 description: "Maintenant que vous avez tué les gobelins, retournez au village et vendez le butin que vous avez obtenu.",
                 rewards: [
                     { type: "xp", value: 500 },
-                    { type: "money", value: 300 }
+                    { type: "money", value: 300 },
+                    { type: "eclipseShards", value: 5 },
                 ]
             },
         ],
@@ -79,7 +80,8 @@ const quests = [
                 description: "Vous avez réussi à récupérer les coffres demandés. Retournez voir le Collectionneur d'Or afin de lui remettre les coffres.",
                 rewards: [
                     { type: "xp", value: 5000 },
-                    { type: "money", value: 20000 }
+                    { type: "money", value: 20000 },
+                    { type: "eclipseShards", value: 10 },   
                 ]
             }
         ]
@@ -119,6 +121,7 @@ const quests = [
                 rewards: [
                     { type: "xp", value: 5000 },
                     { type: "money", value: 10000 },
+                    { type: "eclipseShards", value: 10 },       
                 ]
             }
         ],
@@ -163,7 +166,8 @@ const quests = [
                     { type: "money", value: 1000 },
                     { type: "item", value: "(Pour les mages) Les Septs Étoiles" },
                     { type: "item", value: "(Pour les rôdeurs) Étoile Polaire"},
-                    { type: "item", value: "(Pour les guerriers) Plaie des Foudres"}
+                    { type: "item", value: "(Pour les guerriers) Plaie des Foudres"},
+                    { type: "eclipseShards", value: 10 },
                 ]
             }
         ],
@@ -221,7 +225,8 @@ const quests = [
                 rewards: [
                     { type: "xp", value: 200 },
                     { type: "money", value: 500 },
-                    { type: "item", value: "Râgout de choux aux légumes et herbes" },
+                    { type: "item", value: "Soupe de légumes et herbes" },
+                    { type: "eclipseShards", value: 5 },
                 ]
             },
             {
@@ -231,7 +236,8 @@ const quests = [
                 rewards: [
                     { type: "xp", value: 200 },
                     { type: "money", value: 500 },
-                    { type: "item", value: "Pomme royale à la Ruche" },
+                    { type: "eclipseShards", value: 5 },
+                    { type: "item", value: "Pomme royale de la Ruche" },
                 ]
             },
             {
@@ -242,6 +248,7 @@ const quests = [
                     { type: "xp", value: 200 },
                     { type: "money", value: 500 },
                     { type: "item", value: "Myriade de champignons avec ses pommes de terre" },
+                    { type: "eclipseShards", value: 5 },
                 ],
             },
         ],
@@ -485,7 +492,7 @@ currentStep.rewards.forEach(reward => {
     } else if (reward.type === "item") {
         li.innerHTML = `<span style="color: green;">Objet : ${reward.value} 🗡️</span>`;
     } else if (reward.type === "eclipseShards") {
-        li.innerHTML = `<span style="color: purple;">Éclats du Crépuscule : ${reward.value} 🟣</span>`;
+        li.innerHTML = `<span style="color: purple;">Éclats du Crépuscule : ${reward.value} 🌒</span>`;
     }
     rewardsList.appendChild(li);
 });
